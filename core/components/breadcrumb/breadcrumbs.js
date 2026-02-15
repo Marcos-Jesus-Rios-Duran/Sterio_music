@@ -1,12 +1,26 @@
 // SteroMusic/core/components/breadcrumb/breadcrumbs.js
+
 function updateBreadcrumbs(manualPath) {
     const listContainer = document.getElementById('breadcrumb-container-list');
+    
+    // Importante: Si el componente HTML aún no cargó (por latencia del fetch en app.js), salimos.
     if (!listContainer) return;
 
-    // Usamos la ruta que nos da el Router o la actual del navegador
     const path = manualPath || window.location.pathname;
-    const segments = path.split('/').filter(s => s !== "");
 
+    // --- CASO 1: ESTAMOS EN EL HOME (/) ---
+    if (path === '/' || path === '' || path === '/index.html') {
+        listContainer.innerHTML = `
+            <li class="breadcrumb-item active">
+                <span class="material-icons-outlined breadcrumb-icon">home</span>
+                Inicio
+            </li>
+        `;
+        return; // Terminamos aquí, no hay nada más que pintar
+    }
+
+    // --- CASO 2: ESTAMOS EN UNA SECCIÓN INTERNA ---
+    // 1. Empezamos poniendo la Casita como enlace (Gris)
     let breadcrumbHTML = `
         <li class="breadcrumb-item">
             <a href="/" data-link>
@@ -17,22 +31,30 @@ function updateBreadcrumbs(manualPath) {
         </li>
     `;
 
-    // 4. Construir el resto del camino
+    // 2. Desglosamos la ruta (ej: /servicios/instrumentos)
+    const segments = path.split('/').filter(s => s !== "");
     let pathAccumulator = "";
+
     segments.forEach((segment, index) => {
         pathAccumulator += `/${segment}`;
         const isLast = index === segments.length - 1;
-        const displayName = STERO_ROUTES[pathAccumulator] || segment;
+        
+        // CORRECCIÓN: Accedemos a .name para que no salga [object Object]
+        // Si la ruta no existe en routes.js, usamos el segmento capitalizado como fallback
+        const routeConfig = STERO_ROUTES[pathAccumulator];
+        const displayName = routeConfig ? routeConfig.name : (segment.charAt(0).toUpperCase() + segment.slice(1));
 
         if (isLast) {
+            // El último elemento es texto plano y AZUL (active)
             breadcrumbHTML += `
                 <li class="breadcrumb-item active" aria-current="page">
                     ${displayName}
                 </li>`;
         } else {
+            // Los intermedios son enlaces
             breadcrumbHTML += `
                 <li class="breadcrumb-item">
-                    <a href="${pathAccumulator}.html">${displayName}</a>
+                    <a href="${pathAccumulator}" data-link>${displayName}</a>
                     <span class="breadcrumb-separator">›</span>
                 </li>`;
         }
@@ -40,16 +62,13 @@ function updateBreadcrumbs(manualPath) {
 
     listContainer.innerHTML = breadcrumbHTML;
 
-    // 5. Animación de entrada con anime.js
+    // Animación suave al actualizar
     anime({
         targets: '.breadcrumb-item',
         opacity: [0, 1],
         translateX: [-10, 0],
-        delay: anime.stagger(100),
-        duration: 600,
-        easing: 'easeOutExpo'
+        duration: 400,
+        easing: 'easeOutQuad',
+        delay: anime.stagger(50)
     });
 }
-
-// Ejecutar cuando el loader termine de inyectar el HTML
-// window.addEventListener('load', updateBreadcrumbs);

@@ -51,9 +51,15 @@ const Router = {
         const links = document.querySelectorAll('.nav-links a');
         links.forEach(link => {
             link.classList.remove('active');
-            // Si el href del link coincide con la ruta actual
-            if (link.getAttribute('href') === path) {
-                link.classList.add('active'); // Se pone azul (Cyan)
+            //1. Obtener el nombre de la ruta del html.
+            const routeName= link.getAttribute('data-route')
+            if (routeName){
+                const linkPath= this.getPathByName(routeName)
+                if(linkPath === path){
+                    link.classList.add('active');
+                }
+            } else if (link.getAttribute('href') === path) {
+                link.classList.add('active');
             }
         });
     },
