@@ -6,6 +6,12 @@ const STERO_ROUTES = {
         component: "home",
         init: "initHome"
     },
+    "/registro": {
+        name: "Registro",
+        template: "/features/registro/registro.html",
+        component: "registro",
+        init: "initRegistro" // ¡Importante para que cargue el JS!
+    },
     "/servicios": {
         name: "Servicios",
         template: "/features/servicios/servicios.html",

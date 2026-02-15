@@ -1,6 +1,98 @@
-<section style="padding: 100px 10%; text-align: center;">
-    <h1 style="font-size: 3rem; margin-bottom: 20px;">Hola, somos <span class="brand-name">SteroMusic</span></h1>
-    <p style="color: var(--text-gray); font-size: 1.2rem;">
-        Aquí irá la historia de nuestra academia. Por ahora, ¡hola mundo! 👋
-    </p>
-</section>
+<link rel="stylesheet" href="/features/registro/registro.css">
+<div class="main-bg-container">
+    <div class="glow-1" style="opacity: 0.12;"></div>
+    <div class="glow-2" style="opacity: 0.12;"></div>
+</div>
+
+<div class="register-wrapper">
+    <div class="form-side">
+        <div class="glass-form">
+            <h2>Únete al <span class="brand-name">Ritmo</span></h2>
+            <p class="form-desc">Crea tu cuenta y empieza a producir tu futuro.</p>
+
+            <form id="registroForm">
+                <div class="input-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" placeholder="Ej. Juan Pérez" class="stero-input anim-trigger">
+                </div>
+
+                <div class="input-group">
+                    <label>Nombre de Usuario</label>
+                    <input type="text" placeholder="@producer_master" class="stero-input anim-trigger">
+                </div>
+
+                <div class="input-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" placeholder="hola@correo.com" class="stero-input anim-trigger">
+                </div>
+
+                <div class="row-2">
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <input type="password" placeholder="••••••••" class="stero-input">
+                    </div>
+                    <div class="input-group">
+                        <label>Confirmar</label>
+                        <input type="password" placeholder="••••••••" class="stero-input">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Instrumento / Interés</label>
+                    <div class="select-wrapper">
+                        <select class="stero-input">
+                            <option value="" disabled selected>Selecciona tu pasión...</option>
+                            <option value="piano">🎹 Piano / Teclados</option>
+                            <option value="guitarra">🎸 Guitarra / Bajo</option>
+                            <option value="bateria">🥁 Batería / Percusión</option>
+                            <option value="voz">🎙️ Canto / Voz</option>
+                            <option value="produccion">🎧 Producción Musical / DJ</option>
+                        </select>
+                        <span class="material-icons-outlined arrow-icon">expand_more</span>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="label-text">Acepto los <a href="#">Términos y Condiciones</a> de la banda.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary full-width">Registrarme Ahora</button>
+            </form>
+            
+            <p class="login-link">¿Ya tienes cuenta? <a href="#" data-route="Login">Inicia Sesión</a></p>
+        </div>
+    </div>
+
+    <div class="visual-side">
+        <div class="scene-container">
+            <div class="music-note n1">♪</div>
+            <div class="music-note n2">♫</div>
+
+            <div class="vinyl-record">
+                <svg viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="95" fill="#111" stroke="#333" stroke-width="2"/>
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="65" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="35" fill="var(--primary-color)" />
+                    <circle cx="100" cy="100" r="5" fill="#000" />
+                </svg>
+            </div>
+
+            <div class="speaker-box">
+                <div class="speaker-cone"></div>
+            </div>
+            
+            <div class="eq-bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+</div>
