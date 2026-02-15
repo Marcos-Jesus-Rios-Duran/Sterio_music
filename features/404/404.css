@@ -1,0 +1,104 @@
+/* features/404/404.css */
+
+.error-container {
+    min-height: 80vh; /* Ocupa casi toda la pantalla */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+}
+
+.error-content {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* --- DISCO DE VINILO --- */
+.broken-record-container {
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+
+.broken-record {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)); /* Glow morado */
+}
+
+.record-vinyl {
+    fill: #1e1e24; /* Gris muy oscuro, no negro total */
+    stroke: #333;
+    stroke-width: 2;
+}
+
+.record-label {
+    fill: var(--primary-color); /* Cyan */
+    opacity: 0.8;
+}
+
+.record-text {
+    fill: #000;
+    font-weight: 900;
+    font-size: 24px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.crack-line {
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0; /* Se anima con JS */
+}
+
+.needle-arm {
+    stroke: #666;
+    stroke-width: 4;
+    transform-origin: 20px 20px;
+}
+
+.falling-note {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 3rem;
+    color: var(--primary-color);
+    opacity: 0;
+}
+
+/* --- TEXTOS --- */
+.error-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #fff, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.error-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.btn-group-center {
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Responsive: En móvil ponemos el disco más pequeño */
+@media (max-width: 768px) {
+    .broken-record-container { width: 200px; height: 200px; }
+}

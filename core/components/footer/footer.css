@@ -1,0 +1,110 @@
+/**
+ * STERO MUSIC - Componente Footer (CSS Encapsulado)
+ */
+
+/* SECCIÓN 1: Definición del Custom Element */
+:host {
+    display: block; 
+    width: 100%;
+}
+
+.footer {
+    --primary-color: #00e5ff; 
+    --bg-black: #000000;
+    --text-gray: #9ca3af;
+    --border-color: rgba(255, 255, 255, 0.1);
+
+    background-color: var(--bg-black);
+    border-top: 1px solid var(--border-color);
+    padding: 80px 0 30px 0; /* Sin margen lateral para que el negro sea total */
+    color: white;
+    margin-top: 100px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* SECCIÓN 2: El Contenedor de Centrado */
+.footer-content {
+    max-width: 1200px; /* Ancho máximo igual a tu Hero */
+    margin: 0 auto;    /* Centra la caja en la pantalla */
+    padding: 0 5%;     /* Aire para que las letras no toquen los bordes del monitor */
+}
+
+/* SECCIÓN 3: Grid y Estructura */
+.footer .grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr; 
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* SECCIÓN 4: Tipografía Encapsulada */
+.footer h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.footer p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* SECCIÓN 5: Módulos (Redes, Links y Formulario) */
+.brand-col h2 {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1.5rem; font-weight: 800; text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.social-icons { display: flex; gap: 15px; }
+.social-icons a { color: var(--text-gray); text-decoration: none; transition: 0.3s; }
+.social-icons a:hover { color: var(--primary-color); transform: translateY(-2px); }
+
+.footer .list { list-style: none; padding: 0; }
+.footer .list li { margin-bottom: 12px; }
+.footer .list a {
+    color: var(--text-gray); text-decoration: none; font-size: 0.9rem; transition: 0.3s;
+}
+.footer .list a:hover { color: var(--primary-color); padding-left: 5px; }
+
+/* Formulario Suscríbete */
+.subscribe-form { display: flex; flex-direction: column; gap: 15px; }
+.subscribe-form input {
+    background: #1e1e1e; border: 1px solid #333; padding: 12px 15px;
+    border-radius: 8px; color: white; outline: none; transition: 0.3s;
+}
+.subscribe-form input:focus { border-color: var(--primary-color); }
+.subscribe-form button {
+    background: var(--primary-color); color: black; font-weight: 800;
+    text-transform: uppercase; border: none; padding: 12px; border-radius: 8px;
+    cursor: pointer; transition: 0.3s;
+}
+.subscribe-form button:hover { background: white; transform: translateY(-2px); }
+
+/* SECCIÓN 6: Barra Inferior */
+.bottom {
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.badges { display: flex; gap: 20px; }
+.badges span { display: flex; align-items: center; gap: 5px; }
+
+/* SECCIÓN 7: Responsive */
+@media (max-width: 968px) {
+    .footer .grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+    .footer .grid { grid-template-columns: 1fr; }
+    .bottom { flex-direction: column; text-align: center; gap: 20px; }
+}

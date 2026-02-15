@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/core/components/navbar/navbar.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/core/components/stero-logo.js"></script>
+<script src="/core/components/navbar/navbar.js"></script>
+<script src="/routes.js"></script>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="brand">
+            <stero-logo size="32px"></stero-logo>
+            <span class="brand-text">STEROMUSIC</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#" data-route="nosotros">Nosotros</a></li>
+            <li><a href="#" data-route="servicios" class="active">Servicios</a></li>
+            <li><a href="#" data-route="testimonios">Testimonios</a></li>
+            <li><a href="#" data-route="galeria">Galería</a></li>
+            <li><a href="#" data-route="foro">Foro</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <div class="search-group">
+                <div class="search-box">
+                    <span class="material-icons-outlined search-icon">search</span>
+                    <input type="text" placeholder="Buscar..." class="search-input">
+                </div>
+                <button class="filter-btn" aria-label="Filtros">
+                    <span class="material-icons-outlined">tune</span>
+                </button>
+            </div>
+
+            <a href="#" class="btn-contact" data-route="Contacto">Contacto</a>
+
+            <button class="mobile-toggle">
+                <span class="material-icons-outlined">menu</span>
+            </button>
+        </div>
+    </div>
+</nav>

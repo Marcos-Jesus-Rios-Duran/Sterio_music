@@ -1,0 +1,55 @@
+/* core/components/breadcrumbs/breadcrumbs.css */
+.breadcrumb-wrapper {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-gray, #9ca3af);
+}
+
+.breadcrumb-item a {
+    color: var(--text-gray, #9ca3af);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary-color, #00e5ff);
+}
+
+/* El separador estilo "›" o Chevron */
+.breadcrumb-separator {
+    margin: 0 4px;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 1.2rem;
+    user-select: none;
+}
+
+/* Resaltado de la página actual */
+.breadcrumb-item.active {
+    color: var(--primary-color, #00e5ff);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.breadcrumb-icon {
+    font-size: 18px !important;
+    margin-right: 6px;
+}

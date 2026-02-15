@@ -1,0 +1,102 @@
+/* css/scroll-section.css */
+
+.promotions-section {
+    position: relative;
+    padding: 100px 10%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* --- TÍTULO DE SECCIÓN --- */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 80px;
+    opacity: 0; /* JS lo anima */
+    transform: translateY(30px);
+}
+.section-title span { color: var(--primary-color); }
+
+/* --- CONTENEDOR DE LA LÍNEA SVG --- */
+.line-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Detrás de las cards */
+    pointer-events: none;
+}
+
+/* El trazo de la línea */
+.scroll-path {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 3;
+    stroke-dasharray: 2000; /* Longitud aprox de la línea */
+    stroke-dashoffset: 2000; /* Empieza oculta */
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 5px var(--primary-color));
+}
+
+/* --- GRID DE TARJETAS --- */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+    position: relative;
+}
+
+/* Estilo de cada Card (Glassmorphism reutilizado) */
+.promo-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    transition: transform 0.3s ease;
+    opacity: 0; /* Invisibles al inicio */
+    
+    /* Para efecto 3D al pasar el mouse */
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.promo-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px -10px rgba(0, 229, 255, 0.2);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.card-content p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Ajuste Responsive para la línea */
+@media (max-width: 768px) {
+    .line-container { opacity: 0.3; } /* Menos intrusiva en móvil */
+}

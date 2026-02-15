@@ -1,0 +1,145 @@
+/* --- Variables Globales --- */
+:root {
+    --primary-cyan: #00e5ff;
+    --dark-bg: #000000;
+    --search-bg: #111827; /* Gris muy oscuro azulado para contraste */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-gray: #9ca3af;
+}
+
+.navbar {
+    background-color: var(--dark-bg);
+    border-bottom: 1px solid var(--border-color);
+    height: 85px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Branding --- */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* --- Menú de Navegación --- */
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-cyan);
+}
+
+/* --- Buscador y Acciones --- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Grupo que une Input + Filtro */
+.search-group {
+    display: flex;
+    align-items: center;
+    background: var(--search-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 4px 8px;
+    transition: 0.3s ease;
+}
+
+.search-group:focus-within {
+    border-color: var(--primary-cyan);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+}
+
+.search-input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding-left: 8px;
+    width: 180px; /* Tamaño base */
+    outline: none;
+}
+
+.search-icon { color: var(--text-gray); font-size: 20px !important; }
+
+/* Botón Filtro minimalista */
+.filter-btn {
+    background: rgba(255,255,255,0.05);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    display: flex;
+    transition: 0.3s;
+}
+
+.filter-btn:hover { background: var(--primary-cyan); color: black; }
+
+/* Botón Contacto */
+.btn-contact {
+    background: var(--primary-cyan);
+    color: black;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-contact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
+}
+/* Mejora del alineamiento de los iconos */
+.material-icons-outlined {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+/* Evitar que el logo se deforme al animar */
+stero-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px; /* Evita saltos de layout */
+}
