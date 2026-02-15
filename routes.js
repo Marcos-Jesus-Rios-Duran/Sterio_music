@@ -20,5 +20,11 @@ const STERO_ROUTES = {
         name: "Contacto",
         template: "/features/contacto/contacto.html",
         component: "contacto"
+    },
+    "/404": {
+        name: "Error",
+        template: "/features/404/404.html",
+        component: "error",
+        init: "init404"
     }
 };
