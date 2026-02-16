@@ -1,6 +1,19 @@
 // features/registro/registro.js
 
-window.initRegistro = function() {
+window.initRegistro = function () {
+    console.log("REGISTRO: Init global");
+
+    // 1. Iniciar Animaciones (Tu código existente)
+    startRegistroAnimations();
+
+    // 2. Iniciar Lógica de Formulario (Lo nuevo)
+    if (window.initRegistroLogic) {
+        window.initRegistroLogic();
+    } else {
+        console.warn("initRegistroLogic no encontrado. Verifica los imports.");
+    }
+};
+function startRegistroAnimations() {
     console.log("REGISTRO: Iniciando animaciones del estudio...");
 
     // 1. Animación Continua del Vinilo (Gira por siempre)
@@ -49,7 +62,7 @@ window.initRegistro = function() {
     // 3. INTERACCIÓN: "Typing Beat"
     // Cuando el usuario escribe en un input, el speaker golpea fuerte
     const inputs = document.querySelectorAll('.anim-trigger');
-    
+
     inputs.forEach(input => {
         input.addEventListener('input', () => {
             // Hacemos un "golpe" rápido en el speaker
@@ -59,7 +72,7 @@ window.initRegistro = function() {
                 duration: 100,
                 easing: 'easeOutQuad'
             });
-            
+
             // Cambiamos el color del cono momentáneamente
             anime({
                 targets: '.speaker-cone',

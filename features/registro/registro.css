@@ -3,7 +3,8 @@
 .register-wrapper {
     display: flex;
     min-height: 100vh;
-    padding-top: 85px; /* Altura del navbar */
+    padding-top: 0px;
+    /* Altura del navbar */
     position: relative;
     z-index: 2;
 }
@@ -26,15 +27,34 @@
     padding: 40px;
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-.glass-form h2 { font-size: 2rem; margin-bottom: 10px; color: white; }
-.form-desc { color: var(--text-gray); margin-bottom: 30px; font-size: 0.95rem; }
+.glass-form h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.form-desc {
+    color: var(--text-gray);
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
 
 /* Inputs Estilizados */
-.input-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
-.input-group label { color: #ccc; font-size: 0.9rem; font-weight: 500; }
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    color: #ccc;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
 
 .stero-input {
     background: rgba(0, 0, 0, 0.4);
@@ -56,28 +76,53 @@
 }
 
 /* Layout de 2 columnas para passwords */
-.row-2 { display: flex; gap: 15px; }
-.row-2 .input-group { flex: 1; }
+.row-2 {
+    display: flex;
+    gap: 15px;
+}
+
+.row-2 .input-group {
+    flex: 1;
+}
 
 /* Select Custom */
-.select-wrapper { position: relative; }
-.arrow-icon {
-    position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-    color: var(--text-gray); pointer-events: none;
+.select-wrapper {
+    position: relative;
 }
-select.stero-input { appearance: none; cursor: pointer; }
+
+.arrow-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-gray);
+    pointer-events: none;
+}
+
+select.stero-input {
+    appearance: none;
+    cursor: pointer;
+}
 
 /* Botón Full */
-.full-width { width: 100%; justify-content: center; margin-top: 10px; cursor: pointer; border:none;}
+.full-width {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+}
 
 /* --- LADO DERECHO (VISUALES) --- */
 .visual-side {
+    margin-top: -650px;
+    margin-right: -180px;
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    overflow: hidden; /* Para que las notas no se salgan */
+    overflow: hidden;
 }
 
 /* Contenedor de la escena */
@@ -89,26 +134,35 @@ select.stero-input { appearance: none; cursor: pointer; }
 
 /* 1. Vinilo */
 .vinyl-record {
-    width: 200px; height: 200px;
-    position: absolute; top: 0; right: 20px;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
     z-index: 2;
 }
 
 /* 2. Speaker (Altavoz) */
 .speaker-box {
-    width: 180px; height: 180px;
+    width: 180px;
+    height: 180px;
     background: #1a1a1a;
     border: 2px solid #333;
     border-radius: 20px;
-    position: absolute; bottom: 20px; left: 20px;
-    display: flex; align-items: center; justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
     z-index: 1;
 }
 
 .speaker-cone {
-    width: 120px; height: 120px;
+    width: 120px;
+    height: 120px;
     background: radial-gradient(circle, #222 30%, #444 100%);
     border-radius: 50%;
     border: 4px solid var(--primary-color);
@@ -116,26 +170,224 @@ select.stero-input { appearance: none; cursor: pointer; }
 
 /* 3. Ecualizador */
 .eq-bars {
-    display: flex; gap: 10px; align-items: flex-end;
-    position: absolute; bottom: 50px; right: 50px;
-    height: 100px; z-index: 3;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    height: 100px;
+    z-index: 3;
 }
+
 .bar {
-    width: 15px; background: var(--primary-color);
-    border-radius: 4px; height: 20px;
+    width: 15px;
+    background: var(--primary-color);
+    border-radius: 4px;
+    height: 20px;
 }
 
 /* 4. Notas Musicales */
 .music-note {
-    position: absolute; font-size: 4rem; color: rgba(255,255,255,0.1);
-    font-weight: bold; pointer-events: none;
+    position: absolute;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.1);
+    font-weight: bold;
+    pointer-events: none;
 }
-.n1 { top: 10%; left: 10%; }
-.n2 { bottom: 40%; right: 10%; }
+
+.n1 {
+    top: 10%;
+    left: 10%;
+}
+
+.n2 {
+    bottom: 40%;
+    right: 10%;
+}
+
+/* --- VALIDATION STYLES --- */
+
+/* Mensajes de error */
+.error-msg {
+    color: #ff4081;
+    /* Rosa neón de error */
+    font-size: 0.8rem;
+    margin-top: 5px;
+    min-height: 18px;
+    /* Evita saltos cuando aparece texto */
+    font-weight: 500;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.error-msg.visible {
+    opacity: 1;
+    animation: shake 0.3s ease-in-out;
+}
+
+/* Animación de negación (Shake) */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Checklist de Password */
+.password-checklist {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.password-checklist.hidden {
+    display: none;
+    /* Se oculta si no escriben pass */
+}
+
+.checklist-title {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.password-checklist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.password-checklist li {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 4px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Estados de la checklist */
+.password-checklist li.valid {
+    color: #00e5ff;
+    /* Cyan marca de éxito */
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+}
+
+.password-checklist li.invalid {
+    color: #666;
+}
+
+/* ReCAPTCHA container */
+.recaptcha-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centrar el captcha */
+}
+
+/* Input con error */
+.stero-input.input-error {
+    border-color: #ff4081;
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.2);
+}
+
+/* Estado Loading del Botón */
+.btn-primary.loading {
+    background-color: #333;
+    color: #aaa;
+    cursor: wait;
+    pointer-events: none;
+}
+
+/* Contenedor relativo para posicionar el ojo */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Posicionamiento del ojo */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-gray);
+    font-size: 20px !important;
+    transition: color 0.3s;
+}
+
+.toggle-password:hover {
+    color: var(--primary-color);
+}
+
+/* Medidor de Fuerza */
+.strength-meter {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 8px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Colores de nivel */
+.weak {
+    background-color: #ff4d4d;
+    width: 33%;
+}
+
+.medium {
+    background-color: #ffd633;
+    width: 66%;
+}
+
+.strong {
+    background-color: #00e5ff;
+    width: 100%;
+}
 
 /* Responsive */
 @media (max-width: 900px) {
-    .register-wrapper { flex-direction: column-reverse; padding-top: 100px; }
-    .visual-side { min-height: 300px; flex: none; }
-    .scene-container { transform: scale(0.7); }
+    .register-wrapper {
+        flex-direction: column-reverse;
+        padding-top: 100px;
+    }
+
+    .visual-side {
+        min-height: 300px;
+        flex: none;
+    }
+
+    .scene-container {
+        transform: scale(0.7);
+    }
 }

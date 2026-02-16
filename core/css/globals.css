@@ -2,7 +2,7 @@
  * STERO MUSIC - Estilos Globales (Base del Proyecto)
  * Proyecto: Plataforma de Formación Musical Integral
  * Autor: Marcos
- * * NOTA: Este archivo controla los cimientos visuales. 
+ * * NOTA: Este archivo controla los cimientos visuales.
  * Modificar con precaución para evitar errores en cascada.
  */
 
@@ -11,30 +11,30 @@
    ========================================================================== */
 :root {
     /* Color de identidad: Cyan Neón */
-    --primary-color: #00e5ff; 
-    
+    --primary-color: #00e5ff;
+
     /* Paleta de Oscuros */
     --bg-dark: #0a0a0c;       /* Fondo principal */
     --surface-dark: #121217;  /* Color para tarjetas o secciones */
-    
+
     /* Tipografía y Textos */
     --text-main: #ffffff;     /* Texto principal (blanco) */
     --text-gray: #d1d5db;     /* Texto secundario / gris */
     --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
-    
+
     /* Espaciados y Bordes */
     --border-radius: 12px;
     --transition-speed: 0.3s;
 }
 
 /* ==========================================================================
-   2. RESET Y NORMALIZACIÓN 
+   2. RESET Y NORMALIZACIÓN
    ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     /* Incluye padding y border en el cálculo del ancho total */
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 html {
@@ -48,6 +48,14 @@ body {
     line-height: 1.6;
     overflow-x: hidden; /* Evita scroll horizontal accidental */
     min-height: 100vh;
+}
+#navbar-shell {
+    min-height: 85px; /* Altura de tu navbar */
+    background: var(--bg-dark);
+}
+
+#main-content {
+    min-height: 80vh; /* Reserva la mayor parte de la pantalla */
 }
 
 /* ==========================================================================
@@ -149,7 +157,7 @@ body {
 }
 
 /* ==========================================================================
-   5. HELPERS DE ACCESIBILIDAD 
+   5. HELPERS DE ACCESIBILIDAD
    ========================================================================== */
 .sr-only {
     position: absolute;

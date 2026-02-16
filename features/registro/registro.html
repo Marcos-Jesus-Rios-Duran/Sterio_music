@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="/features/registro/registro.css">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <div class="main-bg-container">
     <div class="glow-1" style="opacity: 0.12;"></div>
     <div class="glow-2" style="opacity: 0.12;"></div>
@@ -10,37 +12,67 @@
             <h2>Únete al <span class="brand-name">Ritmo</span></h2>
             <p class="form-desc">Crea tu cuenta y empieza a producir tu futuro.</p>
 
-            <form id="registroForm">
+            <form id="registroForm" novalidate>
+
                 <div class="input-group">
                     <label>Nombre Completo</label>
-                    <input type="text" placeholder="Ej. Juan Pérez" class="stero-input anim-trigger">
+                    <input type="text" id="inputName" placeholder="Ej. Juan Pérez" class="stero-input anim-trigger">
+                    <small class="error-msg" id="errorName"></small>
                 </div>
 
                 <div class="input-group">
                     <label>Nombre de Usuario</label>
-                    <input type="text" placeholder="@producer_master" class="stero-input anim-trigger">
+                    <input type="text" id="inputUser" placeholder="@producer_master" class="stero-input anim-trigger">
+                    <small class="error-msg" id="errorUser"></small>
                 </div>
 
                 <div class="input-group">
                     <label>Correo Electrónico</label>
-                    <input type="email" placeholder="hola@correo.com" class="stero-input anim-trigger">
+                    <input type="email" id="inputEmail" placeholder="hola@correo.com" class="stero-input anim-trigger">
+                    <small class="error-msg" id="errorEmail"></small>
                 </div>
 
                 <div class="row-2">
                     <div class="input-group">
                         <label>Contraseña</label>
-                        <input type="password" placeholder="••••••••" class="stero-input">
+                        <div class="input-wrapper">
+                            <input type="password" id="inputPass" placeholder="••••••••" class="stero-input"
+                                maxlength="15">
+                            <span class="material-icons-outlined toggle-password"
+                                data-target="inputPass">visibility</span>
+                        </div>
+                        <div class="strength-meter">
+                            <div id="strength-bar" class="strength-fill"></div>
+                        </div>
                     </div>
+
                     <div class="input-group">
                         <label>Confirmar</label>
-                        <input type="password" placeholder="••••••••" class="stero-input">
+                        <div class="input-wrapper">
+                            <input type="password" id="inputPassConfirm" placeholder="••••••••" class="stero-input"
+                                maxlength="15">
+                            <span class="material-icons-outlined toggle-password"
+                                data-target="inputPassConfirm">visibility</span>
+                        </div>
                     </div>
                 </div>
+
+                <div id="password-requirements" class="password-checklist hidden">
+                    <p class="checklist-title">Composición de tu llave maestra:</p>
+                    <ul>
+                        <li id="req-length" class="invalid">Mínimo 8 caracteres</li>
+                        <li id="req-upper" class="invalid">Una mayúscula</li>
+                        <li id="req-lower" class="invalid">Una minúscula</li>
+                        <li id="req-num" class="invalid">Un número</li>
+                        <li id="req-special" class="invalid">✨ Un carácter especial (ej. !@#)</li>
+                    </ul>
+                </div>
+                <small class="error-msg" id="errorPassConfirm"></small>
 
                 <div class="input-group">
                     <label>Instrumento / Interés</label>
                     <div class="select-wrapper">
-                        <select class="stero-input">
+                        <select id="inputInstrument" class="stero-input">
                             <option value="" disabled selected>Selecciona tu pasión...</option>
                             <option value="piano">🎹 Piano / Teclados</option>
                             <option value="guitarra">🎸 Guitarra / Bajo</option>
@@ -50,19 +82,27 @@
                         </select>
                         <span class="material-icons-outlined arrow-icon">expand_more</span>
                     </div>
+                    <small class="error-msg" id="errorInstrument"></small>
                 </div>
 
                 <div class="checkbox-group">
                     <label class="custom-checkbox">
-                        <input type="checkbox">
+                        <input type="checkbox" id="inputTerms">
                         <span class="checkmark"></span>
                         <span class="label-text">Acepto los <a href="#">Términos y Condiciones</a> de la banda.</span>
                     </label>
+                    <small class="error-msg" id="errorTerms" style="display:block; margin-top:5px;"></small>
                 </div>
 
-                <button type="submit" class="btn-primary full-width">Registrarme Ahora</button>
+                <div class="recaptcha-container">
+                    <div id="recaptcha-wrapper" data-sitekey="6LebOWcsAAAAAJ4Hh5iXF258JTofLt9w4qiNJuyN"></div>
+
+                    <small class="error-msg" id="errorCaptcha"></small>
+                </div>
+
+                <button type="submit" id="btnSubmit" class="btn-primary full-width">Registrarme Ahora</button>
             </form>
-            
+
             <p class="login-link">¿Ya tienes cuenta? <a href="#" data-route="Login">Inicia Sesión</a></p>
         </div>
     </div>
@@ -71,24 +111,20 @@
         <div class="scene-container">
             <div class="music-note n1">♪</div>
             <div class="music-note n2">♫</div>
-
             <div class="vinyl-record">
                 <svg viewBox="0 0 200 200">
-                    <circle cx="100" cy="100" r="95" fill="#111" stroke="#333" stroke-width="2"/>
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="#222" stroke-width="1"/>
-                    <circle cx="100" cy="100" r="65" fill="none" stroke="#222" stroke-width="1"/>
-                    <circle cx="100" cy="100" r="50" fill="none" stroke="#222" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="95" fill="#111" stroke="#333" stroke-width="2" />
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#222" stroke-width="1" />
+                    <circle cx="100" cy="100" r="65" fill="none" stroke="#222" stroke-width="1" />
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="#222" stroke-width="1" />
                     <circle cx="100" cy="100" r="35" fill="var(--primary-color)" />
                     <circle cx="100" cy="100" r="5" fill="#000" />
                 </svg>
             </div>
-
             <div class="speaker-box">
                 <div class="speaker-cone"></div>
             </div>
-            
             <div class="eq-bars">
-                <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>

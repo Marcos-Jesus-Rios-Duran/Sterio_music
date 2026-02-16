@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,9 @@
     <link rel="stylesheet" href="/core/css/scroll-section.css">
     <link rel="stylesheet" href="/core/components/breadcrumb/breadcrumbs.css">
     <link rel="stylesheet" href="/features/404/404.css">
-    </head>
+    <link rel="stylesheet" href="/features/registro/registro.css">
+</head>
+
 <body>
 
     <div id="navbar-shell"></div>
@@ -20,17 +23,24 @@
 
     <div id="footer-shell"></div>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/validator@latest/validator.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-<script src="/core/components/stero-logo.js"></script>
+    <script src="/core/utils/validators.js" defer></script>
+    <script src="/routes.js" defer></script>
 
-<script src="/routes.js"></script>
-<script src="/router.js"></script>
-<script src="/core/components/navbar/navbar.js"></script>
-<script src="/core/components/breadcrumb/breadcrumbs.js"></script>
-<script src="/features/home/home.js"></script>
-<script src="/features/404/404.js"></script>
-<script src="/features/registro/registro.js"></script>
-<script src="/app.js"></script>
-</body>
+    <script src="/core/components/stero-logo.js" defer></script>
+    <script src="/core/components/navbar/navbar.js" defer></script>
+    <script src="/core/components/breadcrumb/breadcrumbs.js" defer></script>
+
+    <script src="/router.js" defer></script>
+
+    <script src="/features/home/home.js" defer></script>
+    <script src="/features/404/404.js" defer></script>
+    <script src="/features/registro/registro-form.js" defer></script>
+    <script src="/features/registro/registro.js" defer></script>
+
+    <script src="/app.js" defer></script>
+
 </html>
