@@ -76,7 +76,7 @@ const Router = {
                 return path;
             }
         }
-        return '/404'; // Fallback al inicio si no encuentra nada
+        return '/404';
     }
 };
 

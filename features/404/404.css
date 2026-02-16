@@ -1,104 +1,132 @@
 /* features/404/404.css */
 
 .error-container {
-    min-height: 80vh; /* Ocupa casi toda la pantalla */
+    min-height: 85vh; /* Ocupa el espacio disponible */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
     padding: 20px;
-    text-align: center;
 }
 
+/* Layout General */
 .error-content {
-    z-index: 10;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Móvil por defecto */
     align-items: center;
     gap: 40px;
+    width: 100%;
+    max-width: 1100px;
+    z-index: 10;
 }
 
-/* --- DISCO DE VINILO --- */
-.broken-record-container {
-    width: 300px;
-    height: 300px;
+/* --- COLUMNA VISUAL (Disco) --- */
+.visual-col {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
-.broken-record {
+.broken-record-wrapper {
+    width: 350px;
+    height: 350px;
+    position: relative;
+}
+
+.broken-record-svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)); /* Glow morado */
+    filter: drop-shadow(0 20px 40px rgb(255, 255, 255));
+    /* Inicialmente las partes están juntas, JS las separará */
+    transform: scale(0.95);
 }
 
-.record-vinyl {
-    fill: #1e1e24; /* Gris muy oscuro, no negro total */
-    stroke: #333;
-    stroke-width: 2;
+/* --- COLUMNA TEXTO --- */
+.text-col {
+    flex: 1;
+    text-align: center;
 }
 
-.record-label {
-    fill: var(--primary-color); /* Cyan */
-    opacity: 0.8;
-}
-
-.record-text {
-    fill: #000;
-    font-weight: 900;
-    font-size: 24px;
-    font-family: 'Space Grotesk', sans-serif;
-}
-
-.crack-line {
-    stroke: #fff;
-    stroke-width: 2;
-    stroke-linecap: round;
-    opacity: 0; /* Se anima con JS */
-}
-
-.needle-arm {
-    stroke: #666;
-    stroke-width: 4;
-    transform-origin: 20px 20px;
-}
-
-.falling-note {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 3rem;
-    color: var(--primary-color);
-    opacity: 0;
-}
-
-/* --- TEXTOS --- */
 .error-title {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(3rem, 5vw, 5rem);
     font-weight: 800;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #fff, var(--primary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    opacity: 0;
-    transform: translateY(20px);
+    line-height: 1;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.glitch-text {
+    color: var(--primary-color);
+    display: inline-block;
+    position: relative;
 }
 
 .error-subtitle {
     font-size: 1.1rem;
     color: var(--text-gray);
     line-height: 1.6;
-    opacity: 0;
-    transform: translateY(20px);
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.btn-group-center {
-    margin-top: 30px;
-    opacity: 0;
-    transform: translateY(20px);
+/* --- ANIMACIÓN NOTAS ROTAS --- */
+#falling-notes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
-/* Responsive: En móvil ponemos el disco más pequeño */
-@media (max-width: 768px) {
-    .broken-record-container { width: 200px; height: 200px; }
+.falling-note-item {
+    position: absolute;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    opacity: 0;
+}
+
+.note-shard {
+    position: absolute;
+    width: 4px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+/* Opcional: Si quieres que las grietas brillen más al separarse */
+.shattered-group {
+    transform-origin: center;
+}
+/* --- RESPONSIVE (Escritorio) --- */
+@media (min-width: 900px) {
+    .error-content {
+        flex-direction: row; /* Aquí ponemos uno al lado del otro */
+        gap: 80px;
+        text-align: left;
+    }
+
+    .text-col {
+        text-align: left;
+        display: block;
+    }
+
+    .error-subtitle {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .broken-record-wrapper {
+        width: 450px; /* Más grande en escritorio */
+        height: 450px;
+    }
+
+    .btn-group-left {
+        display: flex;
+        justify-content: flex-start;
+    }
 }
