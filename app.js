@@ -1,20 +1,18 @@
 // SteroMusic/app.js
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("APP: Iniciando sistema...");
-
-    // 1. Cargar los componentes fijos (Navbar, Footer, Breadcrumb)
-    // Estos no cambian nunca, así que los cargamos primero.
-    await Promise.all([
-        loadShellComponent('navbar-shell', '/core/components/navbar/navbar.html'),
-        loadShellComponent('breadcrumb-shell', '/core/components/breadcrumb/breadcrumb.html'),
-        loadShellComponent('footer-shell', '/core/components/footer/footer.html')
-    ]);
-
-    // 2. Arrancar el Router
-    // Mira la URL actual y decide qué pintar en el <main>
+// 1. EL SOLISTA: Cargar el contenido principal inmediatamente
     const currentPath = window.location.pathname;
     Router.navigate(currentPath);
+
+    // 2. EL ACOMPAÑAMIENTO: Cargamos el resto después de que el main inició
+    // Usamos un pequeño timeout para dar respiro al procesador
+    setTimeout(() => {
+        loadShellComponent('navbar-shell', '/core/components/navbar/navbar.html');
+        loadShellComponent('breadcrumb-shell', '/core/components/breadcrumb/breadcrumb.html');
+        loadShellComponent('footer-shell', '/core/components/footer/footer.html');
+    }, 100);
+
 });
 
 // Función auxiliar para cargar HTMLs pequeños

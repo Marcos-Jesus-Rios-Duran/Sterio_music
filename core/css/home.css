@@ -11,6 +11,7 @@
     gap: 40px;
     perspective: 1000px;
     overflow: hidden;
+    contain: paint;
 }
 
 .hero-content { flex: 1; z-index: 2; }
@@ -25,9 +26,9 @@
 .brand-name .letter { display: inline-block; line-height: 1em; }
 
 .hero-content p {
-    font-size: 1.2rem; 
-    color: var(--text-gray); 
-    margin-bottom: 40px; 
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin-bottom: 40px;
     max-width: 550px;
 }
 
@@ -38,15 +39,16 @@
 }
 
 .glass-card {
+    min-height: 350px;
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px; width: 100%; max-width: 600px; height: 350px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    opacity: 0; position: relative; overflow: hidden;
+    opacity: 1; position: relative; overflow: hidden;
 }
 
-.image-wheel { position: relative; width: 100%; height: 100%; }
+.image-wheel { position: relative; width: 100%; height: 100%; background: #121217; }
 
 .wheel-item {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -57,10 +59,11 @@
 .wheel-item img {
     width: 100%; height: 100%; object-fit: cover;
     border-radius: 18px; filter: brightness(0.9);
+    aspect-ratio: 16 / 9;
 }
 
 /* --- Hacks para evitar FOUC (Flash of Unstyled Content) --- */
-.hero-content h1 .text-wrapper, .hero-content p, .btn-group, .glow-1, .glow-2 { opacity: 0; }
+.hero-content h1 .text-wrapper, .hero-content p, .btn-group, .glow-1, .glow-2 { opacity: 1; }
 
 /* --- Responsive Hero --- */
 @media (max-width: 968px) {
@@ -76,7 +79,7 @@
    ========================================================================== */
 .promotions-section {
     position: relative;
-    padding: 25px 10% 100px 10%; 
+    padding: 25px 10% 100px 10%;
     min-height: 100vh;
     overflow: hidden;
     display: flex;
@@ -85,32 +88,32 @@
 
 /* --- Títulos (Ajustado a tamaño más grande) --- */
 .section-title {
-    text-align: left; 
+    text-align: left;
     width: 100%;
     max-width: 100%;
-    font-size: clamp(3rem, 6vw, 4.4rem); 
+    font-size: clamp(3rem, 6vw, 4.4rem);
     line-height: 1.1;
     color: white;
-    opacity: 0; 
+    opacity: 0;
     z-index: 2;
-    
+
 }
 
 .section-title span { color: var(--primary-color); }
 
 
 .section-subtitle {
-    text-align: right; 
-    width: 100%; 
-    max-width: 100%; 
+    text-align: right;
+    width: 100%;
+    max-width: 100%;
     margin-top: -50px;
     margin-bottom: 60px;
     color: white;
     font-size: 1.95rem;
-    font-style: italic; 
+    font-style: italic;
     font-weight: 300;
     opacity: 0.8;
-    padding-right: 20px; 
+    padding-right: 20px;
 }
 
 /* Opcional: Si en móvil se ve raro a la derecha, lo centramos */
@@ -149,7 +152,7 @@
     width: 100%;
     max-width: 1200px;
     /* justify-items: start; <- Puedes cambiar a 'center' si quieres centrarlas */
-    justify-items: center; 
+    justify-items: center;
 }
 
 .promo-card {
@@ -158,7 +161,7 @@
     backdrop-filter: blur(10px);
     border-radius: 20px;
     overflow: hidden;
-    opacity: 0; 
+    opacity: 0;
     transition: all 0.4s ease;
     width: 100%;
     max-width: 350px; /* Le di un pelín más de ancho */
@@ -179,7 +182,7 @@
 
 .card-img {
     width: 100%; height: 100%; object-fit: cover;
-    filter: grayscale(100%) brightness(0.6); 
+    filter: grayscale(100%) brightness(0.6);
     transition: all 0.5s ease;
     transform: scale(1.05);
 }
