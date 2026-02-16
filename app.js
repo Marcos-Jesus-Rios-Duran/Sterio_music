@@ -22,9 +22,9 @@ async function loadShellComponent(id, url) {
     try {
         const res = await fetch(url);
         container.innerHTML = await res.text();
-
-        // Pequeño hack: Si el navbar trae su propio <script>, hay que ejecutarlo manual
-        // O mejor aún, carga el navbar.js en el index.html
+        if (id === 'navbar-shell' && typeof initSearchSystem === 'function') {
+            initSearchSystem();
+        }
     } catch (err) {
         console.error(`Error cargando ${id}:`, err);
     }

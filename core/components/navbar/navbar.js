@@ -1,5 +1,206 @@
 // SteroMusic/core/components/navbar/navbar.js
+// 1. BASE DE DATOS
+const STERO_SEARCH_INDEX = [
+    { title: "Inicio", routeName: "Inicio", category: "General", tags: "home, bienvenida" },
+    { title: "Registro", routeName: "Registro", category: "Cuenta", tags: "login, sign up, usuario" },
+    { title: "Servicios", routeName: "Servicios", category: "Servicios", tags: "clases, cursos" },
+    { title: "Instrumentos", routeName: "Instrumentos", category: "Cursos", tags: "piano, guitarra, bateria" },
+    { title: "Producción", routeName: "Servicios", category: "Cursos", tags: "dj, daw, mezcla" },
+    { title: "Contacto", routeName: "Contacto", category: "Soporte", tags: "email, telefono" }
+];
 
+// Variable para saber qué filtro está activo ('all' por defecto)
+let currentCategoryFilter = 'all';
+
+function initSearchSystem() {
+    const input = document.getElementById('searchInput');
+    const filterBtn = document.getElementById('btnFilters');
+    const dropdown = document.getElementById('searchResults');
+    const filtersContainer = document.getElementById('filtersContainer');
+    const resultsList = document.getElementById('resultsList');
+
+    if (!input || !dropdown) return;
+
+    // --- A. GENERAR CHIPS DE FILTRO ---
+    renderFilterChips(filtersContainer);
+
+    // --- B. EVENTOS ---
+
+    // 1. Click en el botón de Ajustes (Toggle)
+    filterBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita que se cierre inmediatamente
+        dropdown.classList.toggle('hidden');
+        filtersContainer.classList.toggle('hidden'); // Muestra/Oculta los chips
+
+        // Si abrimos y hay texto, buscamos. Si no, historial.
+        if (!dropdown.classList.contains('hidden')) {
+            if (input.value.trim().length > 0) {
+                performSearch(input.value.trim(), resultsList);
+            } else {
+                showHistory(resultsList);
+            }
+        }
+    });
+
+    // 2. Escribir en el Input
+    input.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+
+        if (query.length > 0) {
+            dropdown.classList.remove('hidden');
+            performSearch(query, resultsList);
+        } else {
+            showHistory(resultsList);
+        }
+    });
+
+    // 3. Focus en el Input
+    input.addEventListener('focus', () => {
+        dropdown.classList.remove('hidden');
+        if (input.value.trim().length === 0) showHistory(resultsList);
+    });
+
+    // 4. Click fuera para cerrar
+    document.addEventListener('click', (e) => {
+        if (!input.contains(e.target) &&
+            !dropdown.contains(e.target) &&
+            !filterBtn.contains(e.target)) {
+            dropdown.classList.add('hidden');
+            filtersContainer.classList.add('hidden'); // Ocultamos filtros al cerrar
+        }
+    });
+}
+
+// --- FUNCIÓN PARA RENDERIZAR CHIPS ---
+function renderFilterChips(container) {
+    // 1. Obtener categorías únicas + 'Todo'
+    const categories = ['Todo', ...new Set(STERO_SEARCH_INDEX.map(item => item.category))];
+
+    container.innerHTML = ''; // Limpiar
+
+    categories.forEach(cat => {
+        const chip = document.createElement('button');
+        chip.className = `filter-chip ${cat === 'Todo' ? 'active' : ''}`;
+        chip.textContent = cat;
+
+        chip.addEventListener('click', () => {
+            // A. Visual: Cambiar clase active
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+
+            // B. Lógica: Actualizar filtro global
+            currentCategoryFilter = (cat === 'Todo') ? 'all' : cat;
+
+            // C. Refrescar búsqueda actual
+            const input = document.getElementById('searchInput');
+            if (input.value.trim().length > 0) {
+                performSearch(input.value.trim(), document.getElementById('resultsList'));
+            }
+        });
+
+        container.appendChild(chip);
+    });
+}
+
+// --- MOTOR DE BÚSQUEDA ACTUALIZADO ---
+function performSearch(query, container) {
+    // Filtramos por TEXTO y por CATEGORÍA
+    const results = STERO_SEARCH_INDEX.filter(item => {
+        // 1. Coincidencia de Texto
+        const textMatch = item.title.toLowerCase().includes(query) ||
+                          item.tags.toLowerCase().includes(query);
+
+        // 2. Coincidencia de Categoría
+        const catMatch = currentCategoryFilter === 'all' || item.category === currentCategoryFilter;
+
+        return textMatch && catMatch;
+    });
+
+    container.innerHTML = '';
+
+    if (results.length === 0) {
+        container.innerHTML = `
+            <div style="padding: 20px; text-align: center; color: var(--text-gray);">
+                Sin resultados en "${currentCategoryFilter === 'all' ? 'Todo' : currentCategoryFilter}" 😕
+            </div>`;
+        return;
+    }
+
+    results.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.innerHTML = `
+            <span class="material-icons-outlined result-icon">north_east</span>
+            <div class="result-content">
+                <span class="result-category">${item.category}</span>
+                <span class="result-title">${item.title}</span>
+            </div>
+        `;
+
+        div.addEventListener('click', () => {
+            saveToHistory(item.title);
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').classList.add('hidden');
+
+            if (window.Router && window.Router.getPathByName) {
+                const realPath = window.Router.getPathByName(item.routeName);
+                window.Router.navigate(realPath);
+            }
+        });
+
+        container.appendChild(div);
+    });
+}
+
+// --- HISTORIAL (Igual que antes) ---
+function showHistory(container) {
+    const history = JSON.parse(localStorage.getItem('stero_search_history')) || [];
+    container.innerHTML = '';
+    if (history.length === 0) return;
+
+    const header = document.createElement('div');
+    header.className = 'history-header';
+    header.innerText = 'Recientes';
+    container.appendChild(header);
+
+    history.forEach(term => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.innerHTML = `
+            <span class="material-icons-outlined result-icon">history</span>
+            <span class="result-title" style="color: var(--text-gray)">${term}</span>
+        `;
+        div.addEventListener('click', () => {
+            const input = document.getElementById('searchInput');
+            input.value = term;
+            input.dispatchEvent(new Event('input'));
+        });
+        container.appendChild(div);
+    });
+}
+
+function saveToHistory(term) {
+    let history = JSON.parse(localStorage.getItem('stero_search_history')) || [];
+    history = history.filter(h => h !== term);
+    history.unshift(term);
+    if (history.length > 5) history.pop();
+    localStorage.setItem('stero_search_history', JSON.stringify(history));
+}
+
+function syncNavbarState(currentPath) {
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (currentPath === '/' && href === '/') {
+            link.classList.add('active');
+        } else if (href !== '/' && currentPath.startsWith(href)) {
+            link.classList.add('active');
+        }
+    });
+}
+
+//funcion que indica el link activo en el navbar, se llama desde el router cada vez que se navega a una nueva ruta
 function syncNavbarState(currentPath) {
     const links = document.querySelectorAll('.nav-links a');
 

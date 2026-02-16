@@ -135,7 +135,135 @@
     justify-content: center;
     vertical-align: middle;
 }
+/* --- Estilos del Buscador Avanzado --- */
 
+/* Contenedor relativo para que el dropdown se pegue al search-group */
+.nav-actions {
+    position: relative;
+}
+
+/* El Dropdown Flotante */
+.search-dropdown {
+    position: absolute;
+    top: 60px; /* Debajo del input */
+    right: 0;
+    width: 320px;
+    background: rgba(10, 10, 12, 0.95); /* Fondo casi negro */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    overflow: hidden;
+    display: block;
+}
+
+.search-dropdown.hidden {
+    display: none;
+}
+
+/* Items de Resultado */
+.result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.result-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--primary-cyan);
+}
+
+.result-icon {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.result-category {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--primary-cyan);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.result-title {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Header del Historial */
+.history-header {
+    padding: 10px 20px 5px 20px;
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .search-dropdown {
+        position: fixed;
+        top: 85px; /* Altura del navbar */
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-radius: 0 0 12px 12px;
+    }
+}
+/* --- Área de Filtros (Chips) --- */
+.filters-area {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: rgba(0,0,0,0.3);
+}
+
+.filters-area.hidden {
+    display: none;
+}
+
+/* Estilo del Chip (Botón pequeño) */
+.filter-chip {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-gray);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-chip:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Chip Activo (Cyan Neón) */
+.filter-chip.active {
+    background: rgba(0, 229, 255, 0.2);
+    border-color: var(--primary-cyan);
+    color: var(--primary-cyan);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+}
 /* Evitar que el logo se deforme al animar */
 stero-logo {
     display: flex;

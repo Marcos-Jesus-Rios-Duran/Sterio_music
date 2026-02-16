@@ -22,11 +22,17 @@
             <div class="search-group">
                 <div class="search-box">
                     <span class="material-icons-outlined search-icon">search</span>
-                    <input type="text" placeholder="Buscar..." class="search-input">
+                    <input type="text" id="searchInput" placeholder="Buscar..." class="search-input" autocomplete="off">
                 </div>
-                <button class="filter-btn" aria-label="Filtros">
+                <button id="btnFilters" class="filter-btn" aria-label="Filtros">
                     <span class="material-icons-outlined">tune</span>
                 </button>
+            </div>
+
+            <div id="searchResults" class="search-dropdown hidden">
+                <div id="filtersContainer" class="filters-area hidden"></div>
+
+                <div id="resultsList"></div>
             </div>
 
             <a href="#" class="btn-contact" data-route="Registro">Registrate</a>
