@@ -1,8 +1,9 @@
 /* core/components/breadcrumbs/breadcrumbs.css */
 .breadcrumb-wrapper {
-    padding: 20px 0;
+    padding: 15px 30px;
     margin-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    opacity: 0;
 }
 
 .breadcrumb-list {

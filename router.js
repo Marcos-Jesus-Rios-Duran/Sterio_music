@@ -6,6 +6,7 @@ const Router = {
     async navigate(path) {
         const route = STERO_ROUTES[path] || STERO_ROUTES["/"];
         const container = document.getElementById('main-content');
+        const breadcrumb = document.querySelector('.breadcrumb-wrapper');
 
         try {
             // A. Cargar el HTML de la página solicitada
@@ -22,15 +23,15 @@ const Router = {
 
                 // Redirigimos a la ruta 404 visual
                 this.navigate('/404');
-                return; // ¡Importante! Detenemos la ejecución aquí
+                return;
             }
             const html = await response.text();
 
             // B. Inyectar con una transición suave
             anime({
-                targets: container,
-                opacity: 0,
-                duration: 200,
+                targets: [container,breadcrumb],
+                opacity: 1,
+                duration: 500,
                 easing: 'easeInOutQuad',
                 complete: () => {
                     container.innerHTML = html;
@@ -78,10 +79,7 @@ const Router = {
             }
         });
     },
-    /**
-     * Busca la URL basada en el nombre definido en routes.js
-     * Ejemplo: getPathByName('Contacto') -> retorna '/contacto'
-     */
+
     getPathByName(nameKey) {
         // Recorremos las rutas buscando cual tiene ese 'name' o una clave personalizada
         for (const [path, config] of Object.entries(STERO_ROUTES)) {
