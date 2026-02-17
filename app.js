@@ -1,7 +1,7 @@
 // SteroMusic/app.js
 
 document.addEventListener('DOMContentLoaded', async () => {
-// 1. EL ESCENARIO: Cargamos Navbar, Breadcrumb y Footer PRIMERO
+    // 1. EL ESCENARIO: Cargamos Navbar, Breadcrumb y Footer PRIMERO
     // Usamos Promise.all para que carguen en paralelo (es más rápido)
     await Promise.all([
         loadShellComponent('navbar-shell', '/core/components/navbar/navbar.html'),
@@ -11,9 +11,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 2. EL ACTOR: Ahora que el HTML existe, el Router puede navegar
     // y actualizar el Breadcrumb correctamente sin parpadeos.
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.hash.slice(1) || "/";
     Router.navigate(currentPath);
-
 });
 
 // Función auxiliar para cargar HTMLs pequeños
