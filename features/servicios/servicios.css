@@ -1,0 +1,208 @@
+/* features/servicios/servicios.css */
+
+/* --- HERO ACADÉMICO --- */
+.services-hero {
+    text-align: center;
+    padding: 80px 20px 40px;
+    background: radial-gradient(circle at top, #1a1a2e 0%, #000 70%);
+}
+
+.services-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.services-subtitle {
+    color: var(--text-gray);
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* --- GRID DE FACULTADES --- */
+.facultades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 60px 10%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.faculty-card {
+    background: rgba(20, 20, 25, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.faculty-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15);
+}
+
+.card-visual {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: grayscale(80%) brightness(0.7);
+}
+
+.faculty-card:hover .card-visual img {
+    transform: scale(1.1);
+    filter: grayscale(0%) brightness(1);
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+.faculty-icon {
+    background: var(--primary-color);
+    color: black;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.card-info {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.card-info p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.btn-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* --- SECCIÓN DE PRODUCTOS / PARTNERS --- */
+.partners-section {
+    padding: 80px 5%;
+    background: #050505;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+}
+
+.partners-banner {
+    background: linear-gradient(90deg, #111 0%, #1a1a1a 50%, #111 100%);
+    border-radius: 20px;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.tech-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    opacity: 0.7;
+}
+
+.tech-badge {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: white;
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA SUB-PÁGINAS --- */
+.sub-hero {
+    height: 50vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 60px;
+    padding-left: 10%;
+    overflow: hidden;
+}
+
+.sub-hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    filter: brightness(0.4);
+}
+
+.sub-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+
+.syllabus-container {
+    padding: 60px 10%;
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.syllabus-list {
+    flex: 2;
+}
+
+.syllabus-item {
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid var(--primary-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0 12px 12px 0;
+}
+
+.enroll-sidebar {
+    flex: 1;
+    background: rgba(0,229,255,0.05);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+    height: fit-content;
+}

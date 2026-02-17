@@ -13,7 +13,8 @@
     justify-content: center;
     text-align: center;
     padding: 0 20px;
-    background: radial-gradient(circle at center, #1a1a2e 0%, #000 70%); /* Un fondito sutil */
+    background: radial-gradient(circle at center, #1a1a2e 0%, #000 70%);
+    /* Un fondito sutil */
 }
 
 .hero-content h1 {
@@ -30,21 +31,39 @@
 }
 
 /* --- MISION / VISION --- */
-.identity-section { padding: 80px 10%; }
+.identity-section {
+    padding: 80px 10%;
+}
+
 .identity-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 60px;
 }
+
 .text-card {
     border-left: 4px solid var(--primary-color);
     padding-left: 30px;
 }
-.text-card h3 { font-size: 2rem; margin-bottom: 15px; color: white; }
-.text-card p { font-size: 1.1rem; color: #ccc; line-height: 1.6; }
 
-/* --- TIMELINE (CORREGIDO) --- */
-.timeline-section { padding: 80px 5%; position: relative; overflow: hidden; }
+.text-card h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.text-card p {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+/* --- TIMELINE     z --- */
+.timeline-section {
+    padding: 80px 5%;
+    position: relative;
+    overflow: hidden;
+}
 
 .timeline-container {
     position: relative;
@@ -69,7 +88,8 @@
     padding: 10px 50px;
     position: relative;
     width: 50%;
-    box-sizing: border-box; /* CLAVE para que no se descuadre */
+    box-sizing: border-box;
+    /* CLAVE para que no se descuadre */
 }
 
 /* Los círculos */
@@ -78,7 +98,8 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    right: -12px; /* Ajuste preciso al centro */
+    right: -12px;
+    /* Ajuste preciso al centro */
     background-color: #000;
     border: 4px solid var(--primary-color);
     top: 20px;
@@ -88,11 +109,23 @@
 }
 
 /* Lado Izquierdo */
-.left { left: 0; text-align: right; }
+.left {
+    left: 0;
+    text-align: left;
+}
 
 /* Lado Derecho */
-.right { left: 50%; text-align: left; }
-.right::after { left: -12px; } /* Mueve el círculo al otro lado de la caja */
+.right {
+    left: 50%;
+    text-align: left;
+}
+
+.right::after {
+    left: -12px;
+    right: auto;
+}
+
+/* Mueve el círculo al otro lado de la caja */
 
 .timeline-content {
     padding: 25px;
@@ -102,6 +135,7 @@
     position: relative;
     transition: transform 0.3s ease;
 }
+
 .timeline-content:hover {
     border-color: var(--primary-color);
     transform: translateY(-5px);
@@ -119,19 +153,49 @@
 
 /* Responsive Timeline */
 @media screen and (max-width: 768px) {
-    .timeline-container::after { left: 30px; } /* Línea a la izquierda */
-    .timeline-item { width: 100%; padding-left: 70px; padding-right: 20px; text-align: left; }
-    .timeline-item::after { left: 20px; } /* Círculos a la izquierda */
-    .right { left: 0; }
-    .year { right: inherit; left: 20px; top: -30px; font-size: 2rem; }
-    .timeline-content { margin-top: 10px; }
+    .timeline-container::after {
+        left: 30px;
+    }
+
+    /* Línea a la izquierda */
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 20px;
+        text-align: left;
+    }
+
+    .timeline-item::after {
+        left: 20px;
+    }
+
+    /* Círculos a la izquierda */
+    .right {
+        left: 0;
+    }
+
+    .year {
+        right: inherit;
+        left: 20px;
+        top: -30px;
+        font-size: 2rem;
+    }
+
+    .timeline-content {
+        margin-top: 10px;
+    }
 }
 
 /* --- TEAM GRID (MEJORADO) --- */
-.team-section { padding: 80px 5%; text-align: center; }
+.team-section {
+    padding: 80px 5%;
+    text-align: center;
+}
+
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Auto ajuste */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* Auto ajuste */
     gap: 30px;
     max-width: 1200px;
     margin: 50px auto 0;
@@ -141,12 +205,15 @@
     background: #0a0a0c;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: 0.3s;
 }
 
-.team-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+.team-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+}
 
 .img-wrapper {
     height: 320px;
@@ -168,6 +235,20 @@
     transform: scale(1.1);
 }
 
-.team-info { padding: 20px; }
-.team-info h5 { font-size: 1.2rem; color: white; margin-bottom: 5px; }
-.team-info span { font-size: 0.8rem; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.team-info {
+    padding: 20px;
+}
+
+.team-info h5 {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.team-info span {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}

@@ -1,0 +1,155 @@
+/* features/servicios/instrumentos/instrumentos.css */
+
+/* --- HERO ESPECÍFICO --- */
+.inst-hero {
+    position: relative;
+    height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 10% 60px 10%;
+    overflow: hidden;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.inst-hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+}
+
+.inst-hero-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.4); /* Oscurecemos para que el texto resalte */
+}
+
+.inst-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.inst-hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 15px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.inst-hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    max-width: 600px;
+}
+
+/* Botón Volver */
+.btn-back {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+.btn-back:hover {
+    background: var(--primary-color);
+    color: black;
+    border-color: var(--primary-color);
+}
+
+/* --- GRID DE TARJETAS CON IMAGEN --- */
+.catalog-section {
+    padding: 0 10% 100px 10%;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.inst-card {
+    position: relative;
+    height: 350px; /* Más altas para lucir la imagen */
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.inst-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    border-color: var(--primary-color);
+}
+
+/* Imagen de fondo de la tarjeta */
+.card-bg-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease, filter 0.4s ease;
+    filter: grayscale(100%) brightness(0.6); /* Efecto elegante inicial */
+}
+
+.inst-card:hover .card-bg-image {
+    transform: scale(1.1); /* Zoom al hacer hover */
+    filter: grayscale(0%) brightness(0.8); /* Recupera color */
+}
+
+/* Contenido sobre la imagen */
+.card-content {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 25px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.card-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.card-content p {
+    color: #ddd;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.action-badge {
+    align-self: flex-start;
+    background: var(--primary-color);
+    color: black;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s;
+}
+
+.inst-card:hover .action-badge {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animaciones de entrada */
+.anim-down, .anim-up, .anim-left { opacity: 1; }

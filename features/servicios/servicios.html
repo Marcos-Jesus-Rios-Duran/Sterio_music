@@ -1,23 +1,96 @@
-<div class="main-bg-container">
-    <div class="glow-1" style="opacity: 0.12;"></div>
-    <div class="glow-2" style="opacity: 0.12;"></div>
+<link rel="stylesheet" href="/features/servicios/servicios.css">
+
+<div class="services-page">
+    
+    <section class="services-hero">
+        <h1 class="services-title anim-title">Oferta <span class="brand-name">Académica</span></h1>
+        <p class="services-subtitle anim-text">
+            Nuestra currícula está diseñada bajo estándares de la industria global. 
+            Elige tu especialidad y comienza a construir tu carrera profesional.
+        </p>
+    </section>
+
+    <section class="facultades-grid">
+
+        <div class="faculty-card anim-card" onclick="Router.navigate('/instrumentos')">
+            <div class="card-visual">
+                <img src="/assets/instruments.webp" alt="Instrumentos Clásicos y Modernos">
+                <div class="card-overlay">
+                    <div class="faculty-icon">
+                        <span class="material-icons-outlined">piano</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div>
+                    <h3>Ejecución Instrumental</h3>
+                    <p>Dominio técnico y expresivo. Piano, Cuerdas, Percusión y Guitarras con certificación RSL.</p>
+                </div>
+                <span class="btn-link">Ver Programa <span class="material-icons-outlined" style="font-size:16px">arrow_forward</span></span>
+            </div>
+        </div>
+
+        <div class="faculty-card anim-card" onclick="Router.navigate('/produccion')">
+            <div class="card-visual">
+                <img src="/assets/mezcladoraChida.webp" alt="Consola de Mezcla">
+                <div class="card-overlay">
+                    <div class="faculty-icon">
+                        <span class="material-icons-outlined">equalizer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div>
+                    <h3>Producción & Audio</h3>
+                    <p>Ingeniería de sonido, mezcla, mastering y diseño sonoro para medios audiovisuales.</p>
+                </div>
+                <span class="btn-link">Ver Programa <span class="material-icons-outlined" style="font-size:16px">arrow_forward</span></span>
+            </div>
+        </div>
+
+        <div class="faculty-card anim-card" onclick="Router.navigate('/canto')">
+            <div class="card-visual">
+                <img src="/assets/image.webp" alt="Canto Profesional">
+                <div class="card-overlay">
+                    <div class="faculty-icon">
+                        <span class="material-icons-outlined">mic</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div>
+                    <h3>Vocal Performance</h3>
+                    <p>Técnica vocal, salud fonética y proyección escénica para solistas y coristas.</p>
+                </div>
+                <span class="btn-link">Ver Programa <span class="material-icons-outlined" style="font-size:16px">arrow_forward</span></span>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="partners-section">
+        <div class="partners-banner anim-banner">
+            <div style="display: flex; align-items: center; justify-content: center; gap:15px; margin-bottom: 20px;">
+                <span class="material-icons-outlined" style="color:var(--primary-color); font-size: 40px;">shopping_bag</span>
+                <h2 style="font-size: 2rem; margin:0;">Stero <span style="font-weight:300">Store</span> & Partnerships</h2>
+            </div>
+            
+            <p style="max-width: 600px; margin: 0 auto; color: #ccc;">
+                Gracias a nuestros convenios universitarios, nuestros alumnos acceden a licencias educacionales 
+                de software (VSTs) y hardware con descuentos exclusivos.
+            </p>
+
+            <div class="tech-grid">
+                <div class="tech-badge">Ableton Certified Center</div>
+                <div class="tech-badge">Native Instruments EDU</div>
+                <div class="tech-badge">Steinberg Partner</div>
+                <div class="tech-badge">Arturia</div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <a href="#" class="btn-secondary" onclick="alert('El catálogo de productos solo está disponible para alumnos matriculados.')">Acceder al Portal de Alumnos</a>
+            </div>
+        </div>
+    </section>
+
 </div>
-
-<section style="padding: 100px 10%; text-align: center; position: relative; z-index: 1;">
-    <h1 style="font-size: 3rem; margin-bottom: 20px;">
-        Nuestros <span class="brand-name">Servicios</span>
-    </h1>
-    <p style="color: var(--text-gray); font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px auto;">
-        ¡Hola! Esta es la central de servicios. Desde aquí podrás saltar a nuestras especialidades:
-    </p>
-
-    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-        <button data-route="Instrumentos" class="btn-secondary" style="cursor: pointer;">
-            🎸 Ver Instrumentos
-        </button>
-        
-        <button class="btn-secondary" style="cursor: pointer; opacity: 0.5;">
-            🎙️ Canto (Próximamente)
-        </button>
-    </div>
-</section>
