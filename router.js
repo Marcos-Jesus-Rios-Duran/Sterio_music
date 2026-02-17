@@ -10,6 +10,20 @@ const Router = {
         try {
             // A. Cargar el HTML de la página solicitada
             const response = await fetch(route.template);
+            if (!response.ok) {
+                // Si el archivo HTML no existe (Error 404 real del servidor)
+                console.warn(`Archivo no encontrado: ${route.template}`);
+                
+                // Si ya estamos intentando cargar la 404 y falla, evitamos bucle infinito
+                if (path === '/404') {
+                    container.innerHTML = "<h1>Error Crítico: Falta el archivo 404.html</h1>";
+                    return;
+                }
+
+                // Redirigimos a la ruta 404 visual
+                this.navigate('/404');
+                return; // ¡Importante! Detenemos la ejecución aquí
+            }
             const html = await response.text();
 
             // B. Inyectar con una transición suave
@@ -34,6 +48,7 @@ const Router = {
             });
         } catch (err) {
             console.error("Router Error:", err);
+            if (path !== '/404') this.navigate('/404');
         }
     },
 
@@ -52,10 +67,10 @@ const Router = {
         links.forEach(link => {
             link.classList.remove('active');
             //1. Obtener el nombre de la ruta del html.
-            const routeName= link.getAttribute('data-route')
-            if (routeName){
-                const linkPath= this.getPathByName(routeName)
-                if(linkPath === path){
+            const routeName = link.getAttribute('data-route')
+            if (routeName) {
+                const linkPath = this.getPathByName(routeName)
+                if (linkPath === path) {
                     link.classList.add('active');
                 }
             } else if (link.getAttribute('href') === path) {
@@ -79,6 +94,7 @@ const Router = {
         return '/404';
     }
 };
+window.Router = Router;
 
 // Capturar clicks en enlaces para que no recarguen la página
 document.addEventListener('click', e => {

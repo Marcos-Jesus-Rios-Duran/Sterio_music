@@ -90,6 +90,13 @@ function renderFilterChips(container) {
 
             // B. Lógica: Actualizar filtro global
             currentCategoryFilter = (cat === 'Todo') ? 'all' : cat;
+            //Feedback Visual en el Botón Principa
+            const mainFilterBtn = document.getElementById('btnFilters');
+            if (currentCategoryFilter !== 'all') {
+                mainFilterBtn.classList.add('filter-active'); // ¡Se enciende!
+            } else {
+                mainFilterBtn.classList.remove('filter-active'); // Se apaga
+            }
 
             // C. Refrescar búsqueda actual
             const input = document.getElementById('searchInput');
@@ -102,13 +109,13 @@ function renderFilterChips(container) {
     });
 }
 
-// --- MOTOR DE BÚSQUEDA ACTUALIZADO ---
+// --- MOTOR DE BÚSQUEDA ---
 function performSearch(query, container) {
     // Filtramos por TEXTO y por CATEGORÍA
     const results = STERO_SEARCH_INDEX.filter(item => {
         // 1. Coincidencia de Texto
         const textMatch = item.title.toLowerCase().includes(query) ||
-                          item.tags.toLowerCase().includes(query);
+            item.tags.toLowerCase().includes(query);
 
         // 2. Coincidencia de Categoría
         const catMatch = currentCategoryFilter === 'all' || item.category === currentCategoryFilter;
@@ -139,12 +146,15 @@ function performSearch(query, container) {
 
         div.addEventListener('click', () => {
             saveToHistory(item.title);
-            document.getElementById('searchInput').value = '';
-            document.getElementById('searchResults').classList.add('hidden');
-
-            if (window.Router && window.Router.getPathByName) {
-                const realPath = window.Router.getPathByName(item.routeName);
-                window.Router.navigate(realPath);
+            const search = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            searchInput.value = '';
+            searchResults.classList.add('hidden');
+            if (window.Router &&  typeof window.Router.getPathByName ==='function') {
+                const destinationPath = window.Router.getPathByName(item.routeName);
+                window.Router.navigate(destinationPath);
+            }else {
+                console.error("Router no encontrado. Redireccionando por defecto a Inicio.");
             }
         });
 

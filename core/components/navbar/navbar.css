@@ -2,7 +2,8 @@
 :root {
     --primary-cyan: #00e5ff;
     --dark-bg: #000000;
-    --search-bg: #111827; /* Gris muy oscuro azulado para contraste */
+    --search-bg: #111827;
+    /* Gris muy oscuro azulado para contraste */
     --border-color: rgba(255, 255, 255, 0.1);
     --text-gray: #9ca3af;
 }
@@ -53,7 +54,8 @@
     transition: 0.3s;
 }
 
-.nav-links a:hover, .nav-links a.active {
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--primary-cyan);
 }
 
@@ -91,15 +93,19 @@
     border: none;
     color: white;
     padding-left: 8px;
-    width: 180px; /* Tamaño base */
+    width: 180px;
+    /* Tamaño base */
     outline: none;
 }
 
-.search-icon { color: var(--text-gray); font-size: 20px !important; }
+.search-icon {
+    color: var(--text-gray);
+    font-size: 20px !important;
+}
 
 /* Botón Filtro minimalista */
 .filter-btn {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     border: none;
     color: white;
     border-radius: 8px;
@@ -109,7 +115,10 @@
     transition: 0.3s;
 }
 
-.filter-btn:hover { background: var(--primary-cyan); color: black; }
+.filter-btn:hover {
+    background: var(--primary-cyan);
+    color: black;
+}
 
 /* Botón Contacto */
 .btn-contact {
@@ -128,6 +137,7 @@
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4);
 }
+
 /* Mejora del alineamiento de los iconos */
 .material-icons-outlined {
     display: flex;
@@ -135,6 +145,7 @@
     justify-content: center;
     vertical-align: middle;
 }
+
 /* --- Estilos del Buscador Avanzado --- */
 
 /* Contenedor relativo para que el dropdown se pegue al search-group */
@@ -145,10 +156,12 @@
 /* El Dropdown Flotante */
 .search-dropdown {
     position: absolute;
-    top: 60px; /* Debajo del input */
+    top: 60px;
+    /* Debajo del input */
     right: 0;
     width: 320px;
-    background: rgba(10, 10, 12, 0.95); /* Fondo casi negro */
+    background: rgba(10, 10, 12, 0.95);
+    /* Fondo casi negro */
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -215,17 +228,32 @@
     margin-bottom: 5px;
 }
 
+/* Agrega esto en: Sterio_music/core/components/navbar/navbar.css */
+
+/* Estado cuando hay un filtro activo (Distinto a 'Todo') */
+.filter-btn.filter-active {
+    background-color: var(--primary-cyan);
+    color: var(--dark-bg);
+    /* O negro */
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+    border-color: var(--primary-cyan);
+    transform: scale(1.05);
+    /* Un pequeño pop */
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .search-dropdown {
         position: fixed;
-        top: 85px; /* Altura del navbar */
+        top: 85px;
+        /* Altura del navbar */
         left: 0;
         right: 0;
         width: 100%;
         border-radius: 0 0 12px 12px;
     }
 }
+
 /* --- Área de Filtros (Chips) --- */
 .filters-area {
     padding: 10px 15px;
@@ -233,7 +261,7 @@
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .filters-area.hidden {
@@ -264,10 +292,12 @@
     color: var(--primary-cyan);
     box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
 }
+
 /* Evitar que el logo se deforme al animar */
 stero-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 32px; /* Evita saltos de layout */
+    min-width: 32px;
+    /* Evita saltos de layout */
 }
