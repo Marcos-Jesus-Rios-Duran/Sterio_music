@@ -93,6 +93,11 @@
     transition: opacity 0.3s ease;
 }
 
+/* IMPORTANTE: Pausa el carrusel cuando pones el ratón encima para poder leer o eliminar */
+.scroll-container:hover .testimonials-track {
+    animation-play-state: paused !important;
+}
+
 .modal-content {
     background: var(--card-bg);
     padding: 40px 35px 35px 35px;
@@ -130,6 +135,77 @@
 }
 
 /* --- 3. Formulario dentro del Modal --- */
+/* --- Estilos para Estrellas Interactivas --- */
+.interactive-stars {
+    display: inline-flex;
+    gap: 4px;
+    color: #ffb400;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.interactive-stars .star-icon {
+    font-size: 28px;
+    transition: transform 0.1s;
+}
+
+.interactive-stars .star-icon:hover {
+    transform: scale(1.1);
+}
+
+/* --- Alertas Personalizadas (Reemplazo de confirm) --- */
+.custom-alert {
+    background: rgba(255, 60, 60, 0.15);
+    border: 1px solid #ff4d4d;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.custom-alert p {
+    margin: 0 0 10px 0;
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+.alert-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-danger-small {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-secondary-small {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 6px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.icon-btn-small {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    opacity: 0.5;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.icon-btn-small:hover {
+    opacity: 1;
+}
+
 .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -257,4 +333,42 @@
 
 .hidden {
     display: none !important;
+}
+
+.delete-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* Fondo semi-transparente oscuro */
+    backdrop-filter: blur(6px);
+    /* Aquí está la magia del desenfoque */
+    -webkit-backdrop-filter: blur(6px);
+    /* Soporte para Safari */
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    /* Asegúrate de que coincida con el borde de tu tarjeta */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.delete-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+    /* Reactiva los clics solo cuando está visible */
+}
+
+.delete-overlay p {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    /* Sombra para que se lea perfecto */
 }
