@@ -1,6 +1,10 @@
-/* features/testimonios/testimonios.css */
+/* ==========================================================================
+   FEATURES/TESTIMONIOS/TESTIMONIOS.CSS
+   Estilos exclusivos para la sección de testimonios de SteroMusic
+   ========================================================================== */
 
-/* --- 1. Encabezado y Layout General --- */
+/* --- 1. ENCABEZADO Y TEXTOS PRINCIPALES --- 
+   Controla el título, subtítulo y la alineación central de la cabecera. */
 .section-header {
     width: 100%;
     max-width: 900px;
@@ -16,6 +20,8 @@
     margin-bottom: 15px;
     font-weight: 800;
     letter-spacing: -1px;
+    opacity: 1;
+    transform: none !important;
 }
 
 .section-subtitle {
@@ -26,6 +32,8 @@
     margin: 0 auto;
 }
 
+/* --- 2. CONTROLES Y BOTONES GENERALES --- 
+   Estilos para los botones debajo del título (Añadir, Editar, Ocultar). */
 .testimonials-controls {
     display: flex;
     justify-content: center;
@@ -35,8 +43,66 @@
     flex-wrap: wrap;
 }
 
-/* --- 2. Modal --- */
-/* Alinea el título a la izquierda y la X a la derecha */
+.btn-secondary-outline {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.btn-secondary-outline:hover {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+}
+
+.icon-btn-small {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    opacity: 0.5;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.icon-btn-small:hover {
+    opacity: 1;
+}
+
+/* --- 3. MODALES (VENTANAS EMERGENTES) --- 
+   Controla el fondo oscuro, la caja del modal y el botón de cerrar (X). */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    /* Efecto de cristal esmerilado en el fondo */
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 40px 35px 35px 35px;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 480px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -56,7 +122,6 @@
     background: transparent;
     border: none;
     color: var(--primary-color);
-    /* Aquí toma el azul/cian de tu tema */
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -68,74 +133,48 @@
 
 .close-btn:hover {
     background: rgba(0, 255, 255, 0.1);
-    /* Un pequeño brillo azul al pasar el mouse */
     transform: rotate(90deg);
-    /* Efecto visual de rotación */
+    /* Animación al pasar el ratón */
 }
 
-/* Tamaño del icono de Material Icons */
 .close-btn .material-icons-outlined {
     font-size: 28px;
 }
 
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* --- 4. FORMULARIOS Y ESTRELLAS (DENTRO DEL MODAL) --- 
+   Inputs, textareas y el sistema de calificación interactivo. */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    z-index: 3000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.3s ease;
-}
-
-/* IMPORTANTE: Pausa el carrusel cuando pones el ratón encima para poder leer o eliminar */
-.scroll-container:hover .testimonials-track {
-    animation-play-state: paused !important;
-}
-
-.modal-content {
-    background: var(--card-bg);
-    padding: 40px 35px 35px 35px;
-    /* Más espacio arriba para la X */
-    border-radius: 20px;
-    width: 95%;
-    max-width: 480px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-/* Mejora de la 'X' de cierre */
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+    padding: 12px;
     background: rgba(255, 255, 255, 0.05);
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     color: white;
-    font-size: 1.2rem;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    font-family: inherit;
+    transition: border-color 0.3s;
 }
 
-.close-modal:hover {
-    background: #ff4d4d;
-    transform: rotate(90deg);
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.08);
 }
 
-/* --- 3. Formulario dentro del Modal --- */
-/* --- Estilos para Estrellas Interactivas --- */
 .interactive-stars {
     display: inline-flex;
     gap: 4px;
@@ -151,9 +190,131 @@
 
 .interactive-stars .star-icon:hover {
     transform: scale(1.1);
+    /* Efecto de crecimiento en la estrella */
 }
 
-/* --- Alertas Personalizadas (Reemplazo de confirm) --- */
+/* --- 5. CARRUSEL INFINITO --- 
+   El contenedor principal que hace que las tarjetas se muevan solas. */
+.scroll-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 0;
+}
+
+.testimonials-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    will-change: transform;
+    /* Optimización de rendimiento para animaciones */
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.scrolling-active {
+    animation: scrollLeft 45s linear infinite;
+}
+
+/* IMPORTANTE: Pausa el carrusel cuando pones el ratón encima */
+.scroll-container:hover .testimonials-track {
+    animation-play-state: paused !important;
+}
+
+/* --- 6. TARJETAS DE TESTIMONIOS (CARDS) --- 
+   El diseño individual de cada reseña. */
+.testimonial-card {
+    width: 320px;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+    position: relative;
+    /* Transición suave para cuando la tarjeta crece al pasar el ratón */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    /* Hace que resalte por encima de las demás */
+}
+
+.rating-stars {
+    color: #ffb400;
+    /* Color dorado para las estrellas impresas */
+    display: flex;
+    gap: 2px;
+    margin-bottom: 10px;
+}
+
+/* --- 7. SISTEMA DE ELIMINACIÓN Y ALERTAS --- 
+   Botón de basura, overlay borroso y estilos de alertas personalizadas. */
+.delete-testimonial {
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff4d4d;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.testimonial-card:hover .delete-testimonial {
+    opacity: 1;
+    /* Muestra el botón solo cuando el ratón está sobre la tarjeta */
+}
+
+.delete-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    /* Desenfoque del fondo */
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.delete-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+    /* Activa los clics cuando se muestra */
+}
+
+.delete-overlay p {
+    color: #ffffff !important;
+    /* Forzamos el color blanco para evitar herencias globales */
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 15px;
+}
+
 .custom-alert {
     background: rgba(255, 60, 60, 0.15);
     border: 1px solid #ff4d4d;
@@ -165,7 +326,7 @@
 
 .custom-alert p {
     margin: 0 0 10px 0;
-    color: #ff4d4d;
+    color: #ff4d4d !important;
     font-weight: bold;
 }
 
@@ -193,186 +354,8 @@
     cursor: pointer;
 }
 
-.icon-btn-small {
-    background: transparent;
-    border: none;
-    color: var(--text-main);
-    opacity: 0.5;
-    cursor: pointer;
-    vertical-align: middle;
-}
-
-.icon-btn-small:hover {
-    opacity: 1;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--primary-color);
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    color: white;
-    font-family: inherit;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.08);
-}
-
-/* --- 4. Scroll Infinito y Tarjetas --- */
-.scroll-container {
-    width: 100%;
-    overflow: hidden;
-    padding: 40px 0;
-}
-
-.testimonials-track {
-    display: flex;
-    gap: 30px;
-    width: max-content;
-    will-change: transform;
-}
-
-@keyframes scrollLeft {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.scrolling-active {
-    animation: scrollLeft 45s linear infinite;
-}
-
-.animation-paused {
-    animation-play-state: paused !important;
-}
-
-.testimonial-card {
-    width: 320px;
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    flex-shrink: 0;
-    position: relative;
-    transition: transform 0.3s ease;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0, 255, 255, 0.2);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-    /* Sombra pronunciada */
-    z-index: 10;
-    /* Asegura que la tarjeta grande tape a las de los lados */
-}
-
-/* --- 5. Botones y Utilidades --- */
-.btn-secondary-outline {
-    background: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s;
-}
-
-.btn-secondary-outline:hover {
-    background: var(--primary-color);
-    color: var(--bg-dark);
-}
-
-.delete-testimonial {
-    background: rgba(255, 0, 0, 0.1);
-    color: #ff4d4d;
-    border: none;
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    opacity: 0;
-    transition: 0.3s;
-}
-
-.testimonial-card:hover .delete-testimonial {
-    opacity: 1;
-}
-
-.rating-stars {
-    color: #ffb400;
-    display: flex;
-    gap: 2px;
-    margin-bottom: 10px;
-}
-
+/* --- 8. UTILIDADES --- 
+   Clases auxiliares para ocultar o modificar elementos rápidamente. */
 .hidden {
     display: none !important;
-}
-
-.delete-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    /* Fondo semi-transparente oscuro */
-    backdrop-filter: blur(6px);
-    /* Aquí está la magia del desenfoque */
-    -webkit-backdrop-filter: blur(6px);
-    /* Soporte para Safari */
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    /* Asegúrate de que coincida con el borde de tu tarjeta */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.delete-overlay.show {
-    opacity: 1;
-    pointer-events: all;
-    /* Reactiva los clics solo cuando está visible */
-}
-
-.delete-overlay p {
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    /* Sombra para que se lea perfecto */
 }
