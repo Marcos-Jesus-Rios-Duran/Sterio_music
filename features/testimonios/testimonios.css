@@ -1,18 +1,17 @@
 /* features/testimonios/testimonios.css */
-/* --- Encabezado de la Sección --- */
+
+/* --- 1. Encabezado y Layout General --- */
 .section-header {
     width: 100%;
     max-width: 900px;
-    /* Evita que el texto se estire demasiado en pantallas 4K */
     margin: 0 auto 40px auto;
-    /* El 'auto' en los lados es lo que lo centra */
     text-align: center;
     padding: 0 20px;
     box-sizing: border-box;
 }
 
 .section-title {
-    font-size: 2.8rem;
+    font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 15px;
     font-weight: 800;
@@ -25,14 +24,6 @@
     opacity: 0.8;
     max-width: 600px;
     margin: 0 auto;
-    /* Centra el párrafo respecto al header */
-}
-
-.testimonials-page {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    width: 100%;
-    overflow-x: hidden;
-    /* Esto evita el scroll horizontal general */
 }
 
 .testimonials-controls {
@@ -44,146 +35,138 @@
     flex-wrap: wrap;
 }
 
-.btn-group-mini {
+/* --- 2. Modal --- */
+/* Alinea el título a la izquierda y la X a la derecha */
+.modal-header {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 100%;
 }
 
-.btn-secondary-outline {
+.modal-header h3 {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.close-btn {
     background: transparent;
-    border: 1px solid var(--primary-color);
+    border: none;
     color: var(--primary-color);
-    border-radius: 8px;
-    padding: 8px 12px;
+    /* Aquí toma el azul/cian de tu tema */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
+    padding: 5px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
 }
 
-.btn-secondary-outline:hover {
-    background: var(--primary-color);
-    color: var(--bg-dark);
-    /* features/testimonios/testimonios.css */
-
-    .testimonials-page {
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        width: 100%;
-        overflow-x: hidden;
-        /* Esto evita el scroll horizontal general */
-    }
-
-    .testimonials-controls {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        margin-top: 25px;
-        flex-wrap: wrap;
-    }
-
-    .btn-group-mini {
-        display: flex;
-        gap: 10px;
-    }
-
-    .btn-secondary-outline {
-        background: transparent;
-        border: 1px solid var(--primary-color);
-        color: var(--primary-color);
-        border-radius: 8px;
-        padding: 8px 12px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s;
-    }
-
-    .btn-secondary-outline:hover {
-        background: var(--primary-color);
-        color: var(--bg-dark);
-    }
-
-    /* Scroll Infinito Corregido */
-    .scroll-container {
-        width: 100%;
-        overflow: hidden;
-        /* Corta lo que sobra */
-        padding: 40px 0;
-    }
-
-    .testimonials-track {
-        display: flex;
-        gap: 30px;
-        width: max-content;
-        padding-left: 20px;
-        /* Separación inicial */
-        will-change: transform;
-    }
-
-    @keyframes scrollLeft {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-50%);
-        }
-    }
-
-    .scrolling-active {
-        animation: scrollLeft 45s linear infinite;
-    }
-
-    .scrolling-active:hover {
-        animation-play-state: paused;
-        /* Se detiene al pasar el mouse por defecto */
-    }
-
-    .animation-paused {
-        animation-play-state: paused !important;
-        /* Para cuando lo detienen con el botón */
-    }
-
-    /* Tarjetas */
-    .testimonial-card {
-        width: 320px;
-        background: var(--card-bg);
-        border-radius: var(--border-radius);
-        padding: 25px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        flex-shrink: 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .rating-stars {
-        color: #ffb400;
-        /* Color doradito chido */
-        display: flex;
-        gap: 2px;
-        margin-top: 5px;
-    }
-
-    .hidden-message {
-        text-align: center;
-        padding: 50px;
-        background: var(--card-bg);
-        border-radius: var(--border-radius);
-        margin-top: 20px;
-    }
-
-    .hidden {
-        display: none !important;
-    }
+.close-btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    /* Un pequeño brillo azul al pasar el mouse */
+    transform: rotate(90deg);
+    /* Efecto visual de rotación */
 }
 
-/* Scroll Infinito Corregido */
+/* Tamaño del icono de Material Icons */
+.close-btn .material-icons-outlined {
+    font-size: 28px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 40px 35px 35px 35px;
+    /* Más espacio arriba para la X */
+    border-radius: 20px;
+    width: 95%;
+    max-width: 480px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Mejora de la 'X' de cierre */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.close-modal:hover {
+    background: #ff4d4d;
+    transform: rotate(90deg);
+}
+
+/* --- 3. Formulario dentro del Modal --- */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: white;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* --- 4. Scroll Infinito y Tarjetas --- */
 .scroll-container {
     width: 100%;
     overflow: hidden;
-    /* Corta lo que sobra */
     padding: 40px 0;
 }
 
@@ -191,8 +174,6 @@
     display: flex;
     gap: 30px;
     width: max-content;
-    padding-left: 20px;
-    /* Separación inicial */
     will-change: transform;
 }
 
@@ -210,17 +191,10 @@
     animation: scrollLeft 45s linear infinite;
 }
 
-.scrolling-active:hover {
-    animation-play-state: paused;
-    /* Se detiene al pasar el mouse por defecto */
-}
-
 .animation-paused {
     animation-play-state: paused !important;
-    /* Para cuando lo detienen con el botón */
 }
 
-/* Tarjetas */
 .testimonial-card {
     width: 320px;
     background: var(--card-bg);
@@ -228,23 +202,57 @@
     padding: 25px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     flex-shrink: 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 255, 0.2);
+}
+
+/* --- 5. Botones y Utilidades --- */
+.btn-secondary-outline {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.btn-secondary-outline:hover {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+}
+
+.delete-testimonial {
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff4d4d;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.testimonial-card:hover .delete-testimonial {
+    opacity: 1;
 }
 
 .rating-stars {
     color: #ffb400;
-    /* Color doradito chido */
     display: flex;
     gap: 2px;
-    margin-top: 5px;
-}
-
-.hidden-message {
-    text-align: center;
-    padding: 50px;
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .hidden {
