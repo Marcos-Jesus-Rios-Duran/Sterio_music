@@ -1,10 +1,6 @@
 <section id="testimonialsSection" class="testimonials-page page-padding">
     <header class="section-header">
-        <h1 class="section-title" id="mainTitle">
-            Comunidad SteroMusic
-            <button id="btnEditTitle" class="icon-btn-small" title="Editar título"><span
-                    class="material-icons-outlined">edit</span></button>
-        </h1>
+        <h1 class="section-title" id="mainTitle">Comunidad SteroMusic</h1>
         <p class="section-subtitle">Lo que nuestros alumnos opinan de su formación musical.</p>
 
         <div class="testimonials-controls">
@@ -12,8 +8,8 @@
                 <span class="material-icons-outlined">add_comment</span> Publicar Experiencia
             </button>
             <div class="btn-group-mini">
-                <button id="btnToggleAnim" class="btn-secondary-outline" title="Pausar/Reanudar carrusel">
-                    <span id="animIcon" class="material-icons-outlined">pause</span>
+                <button id="btnEditTitle" class="btn-secondary-outline" title="Editar título principal">
+                    <span class="material-icons-outlined">edit</span>
                 </button>
                 <button id="btnToggleVisibility" class="btn-secondary-outline" title="Mostrar/Ocultar testimonios">
                     <span id="visibilityIcon" class="material-icons-outlined">visibility</span>
@@ -70,6 +66,22 @@
                         caracteres</small>
                 </div>
                 <button type="submit" class="btn-primary full-width">Enviar Testimonio</button>
+            </form>
+        </div>
+    </div>
+    <div id="editTitleModal" class="modal-overlay hidden">
+        <div class="modal-content card-style">
+            <div class="modal-header">
+                <h3>Editar Título Principal</h3>
+                <button id="btnCloseTitleModal" class="close-btn"><span
+                        class="material-icons-outlined">close</span></button>
+            </div>
+            <form id="editTitleForm" class="modal-form">
+                <div class="form-group">
+                    <label for="newTitleInput">Nuevo Título</label>
+                    <input type="text" id="newTitleInput" required placeholder="Ej. Comunidad SteroMusic">
+                </div>
+                <button type="submit" class="btn-primary full-width">Guardar Cambios</button>
             </form>
         </div>
     </div>

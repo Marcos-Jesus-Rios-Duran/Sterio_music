@@ -285,6 +285,10 @@
 .testimonial-card:hover {
     transform: translateY(-5px);
     border-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    /* Sombra pronunciada */
+    z-index: 10;
+    /* Asegura que la tarjeta grande tape a las de los lados */
 }
 
 /* --- 5. Botones y Utilidades --- */

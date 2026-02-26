@@ -160,16 +160,64 @@ window.initTestimonios = function () {
         }
     });
 
-    document.getElementById('btnToggleAnim').onclick = () => {
-        const isPaused = track.classList.toggle('animation-paused');
-        document.getElementById('animIcon').textContent = isPaused ? 'play_arrow' : 'pause';
+    // --- Lógica del Modal para Editar Título ---
+    const editTitleModal = document.getElementById('editTitleModal');
+    const editTitleForm = document.getElementById('editTitleForm');
+    const newTitleInput = document.getElementById('newTitleInput');
+    const mainTitleNode = document.getElementById('mainTitle')
+
+    // Abrir el modal del título con animación
+    document.getElementById('btnEditTitle').onclick = function () {
+        // Pre-llenamos el input con el título actual
+        newTitleInput.value = mainTitleNode.textContent.trim();
+
+        editTitleModal.classList.remove('hidden');
+        anime({
+            targets: editTitleModal.querySelector('.modal-content'),
+            scale: [0.8, 1],
+            opacity: [0, 1],
+            duration: 400,
+            easing: 'easeOutBack'
+        });
     };
 
-    document.getElementById('btnEditTitle').onclick = function () {
-        const mainTitleNode = document.getElementById('mainTitle').childNodes[0];
-        const nuevo = prompt("Modificar título principal:", mainTitleNode.textContent.trim());
-        if (nuevo) mainTitleNode.textContent = nuevo + " ";
+    // Función para cerrar el modal del título con animación
+    const closeTitleModal = () => {
+        anime({
+            targets: editTitleModal.querySelector('.modal-content'),
+            scale: [1, 0.9],
+            opacity: [1, 0],
+            duration: 300,
+            easing: 'easeInSine',
+            complete: function () {
+                editTitleModal.classList.add('hidden');
+                editTitleForm.reset();
+                // Restaurar los estilos para la próxima vez
+                const content = editTitleModal.querySelector('.modal-content');
+                content.style.opacity = 1;
+                content.style.transform = 'scale(1)';
+            }
+        });
     };
+
+    // Cerrar con la 'X'
+    document.getElementById('btnCloseTitleModal').onclick = closeTitleModal;
+
+    // Cerrar al hacer clic fuera del modal
+    editTitleModal.addEventListener('click', (e) => {
+        if (e.target === editTitleModal) closeTitleModal();
+    });
+
+    // Guardar el nuevo título al enviar el formulario
+    editTitleForm.onsubmit = (e) => {
+        e.preventDefault(); // Evita que la página se recargue
+        const nuevoTitulo = newTitleInput.value.trim();
+        if (nuevoTitulo) {
+            mainTitleNode.textContent = nuevoTitulo + " "; // Actualiza el DOM
+        }
+        closeTitleModal(); // Cierra el modal de forma fluida
+    };
+
 
     // --- 5. Renderizado y Eliminación ---
     function getStarsHTML(rating) {
