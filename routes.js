@@ -23,7 +23,8 @@ const STERO_ROUTES = {
     "/testimonios": {
         name: "Testimonios",
         template: "/features/testimonios/testimonios.html",
-        component: "testimonios"
+        component: "testimonios",
+        init: "initTestimonios"
     },
     "/galeria": {
         name: "Galería",

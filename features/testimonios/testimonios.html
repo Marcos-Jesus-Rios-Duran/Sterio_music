@@ -1,6 +1,63 @@
-<section style="padding: 100px 10%; text-align: center;">
-    <h1 style="font-size: 3rem; margin-bottom: 20px;">Testimonios</h1>
-    <p style="color: var(--text-gray); font-size: 1.2rem;">
-        "Hola, soy un alumno feliz aprendiendo piano." - Ejemplo de Testimonio 🎹
-    </p>
+<section id="testimonialsSection" class="testimonials-page page-padding">
+    <header class="section-header">
+        <h1 class="section-title">Comunidad SteroMusic</h1>
+        <p class="section-subtitle">Lo que nuestros alumnos opinan de su formación musical.</p>
+
+        <div class="testimonials-controls">
+            <button id="btnOpenModal" class="btn-primary">
+                <span class="material-icons-outlined">add_comment</span> Publicar Experiencia
+            </button>
+            <div class="btn-group-mini">
+                <button id="btnToggleAnim" class="btn-secondary-outline" title="Pausar/Reanudar carrusel">
+                    <span id="animIcon" class="material-icons-outlined">pause</span>
+                </button>
+                <button id="btnHideAll" class="btn-secondary-outline" title="Ocultar testimonios">
+                    <span class="material-icons-outlined">visibility_off</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="scrollWrapper" class="scroll-container">
+        <div id="testimonialsGrid" class="testimonials-track">
+        </div>
+    </div>
+
+    <div id="hiddenMessage" class="hidden-message hidden">
+        <p>Has ocultado las reseñas de la comunidad.</p>
+        <button id="btnShowAll" class="btn-primary-outline">Volver a mostrar</button>
+    </div>
+
+    <div id="testimonialModal" class="modal-overlay hidden">
+        <div class="modal-content card-style">
+            <div class="modal-header">
+                <h3>Nueva Reseña</h3>
+                <button id="btnCloseModal" class="close-btn"><span class="material-icons-outlined">close</span></button>
+            </div>
+            <form id="testimonialForm" class="modal-form">
+                <div class="form-group">
+                    <label for="userName">Tu nombre</label>
+                    <input type="text" id="userName" required placeholder="Ej. Camila Mendoza">
+                </div>
+                <div class="form-group">
+                    <label for="userRating">Calificación</label>
+                    <select id="userRating" required class="input-style">
+                        <option value="5">⭐⭐⭐⭐⭐ 5.0 - Excelente</option>
+                        <option value="4.5">⭐⭐⭐⭐½ 4.5 - Muy Bueno</option>
+                        <option value="4">⭐⭐⭐⭐ 4.0 - Bueno</option>
+                        <option value="3.5">⭐⭐⭐½ 3.5 - Regular</option>
+                        <option value="3">⭐⭐⭐ 3.0 - Puede Mejorar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="userComment">Tu reseña</label>
+                    <textarea id="userComment" rows="4" required
+                        placeholder="Cuéntanos tu experiencia con los profes, el equipo..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Enviar Testimonio</button>
+            </form>
+        </div>
+    </div>
 </section>
+
+<link rel="stylesheet" href="/features/testimonios/testimonios.css">

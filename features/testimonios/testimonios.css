@@ -1,0 +1,252 @@
+/* features/testimonios/testimonios.css */
+/* --- Encabezado de la Sección --- */
+.section-header {
+    width: 100%;
+    max-width: 900px;
+    /* Evita que el texto se estire demasiado en pantallas 4K */
+    margin: 0 auto 40px auto;
+    /* El 'auto' en los lados es lo que lo centra */
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+    /* Centra el párrafo respecto al header */
+}
+
+.testimonials-page {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    width: 100%;
+    overflow-x: hidden;
+    /* Esto evita el scroll horizontal general */
+}
+
+.testimonials-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.btn-group-mini {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-secondary-outline {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.btn-secondary-outline:hover {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    /* features/testimonios/testimonios.css */
+
+    .testimonials-page {
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        width: 100%;
+        overflow-x: hidden;
+        /* Esto evita el scroll horizontal general */
+    }
+
+    .testimonials-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .btn-group-mini {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-secondary-outline {
+        background: transparent;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        border-radius: 8px;
+        padding: 8px 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .btn-secondary-outline:hover {
+        background: var(--primary-color);
+        color: var(--bg-dark);
+    }
+
+    /* Scroll Infinito Corregido */
+    .scroll-container {
+        width: 100%;
+        overflow: hidden;
+        /* Corta lo que sobra */
+        padding: 40px 0;
+    }
+
+    .testimonials-track {
+        display: flex;
+        gap: 30px;
+        width: max-content;
+        padding-left: 20px;
+        /* Separación inicial */
+        will-change: transform;
+    }
+
+    @keyframes scrollLeft {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .scrolling-active {
+        animation: scrollLeft 45s linear infinite;
+    }
+
+    .scrolling-active:hover {
+        animation-play-state: paused;
+        /* Se detiene al pasar el mouse por defecto */
+    }
+
+    .animation-paused {
+        animation-play-state: paused !important;
+        /* Para cuando lo detienen con el botón */
+    }
+
+    /* Tarjetas */
+    .testimonial-card {
+        width: 320px;
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .rating-stars {
+        color: #ffb400;
+        /* Color doradito chido */
+        display: flex;
+        gap: 2px;
+        margin-top: 5px;
+    }
+
+    .hidden-message {
+        text-align: center;
+        padding: 50px;
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        margin-top: 20px;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+}
+
+/* Scroll Infinito Corregido */
+.scroll-container {
+    width: 100%;
+    overflow: hidden;
+    /* Corta lo que sobra */
+    padding: 40px 0;
+}
+
+.testimonials-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    padding-left: 20px;
+    /* Separación inicial */
+    will-change: transform;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.scrolling-active {
+    animation: scrollLeft 45s linear infinite;
+}
+
+.scrolling-active:hover {
+    animation-play-state: paused;
+    /* Se detiene al pasar el mouse por defecto */
+}
+
+.animation-paused {
+    animation-play-state: paused !important;
+    /* Para cuando lo detienen con el botón */
+}
+
+/* Tarjetas */
+.testimonial-card {
+    width: 320px;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.rating-stars {
+    color: #ffb400;
+    /* Color doradito chido */
+    display: flex;
+    gap: 2px;
+    margin-top: 5px;
+}
+
+.hidden-message {
+    text-align: center;
+    padding: 50px;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
