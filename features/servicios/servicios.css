@@ -4,21 +4,26 @@
 .services-hero {
     text-align: center;
     padding: 80px 20px 40px;
-    background: radial-gradient(circle at top, #1a1a2e 0%, #000 70%);
+    /* Usamos el color de fondo y el color de tarjetas para un gradiente dinámico */
+    background: radial-gradient(circle at top, var(--bg-card) 0%, var(--bg) 70%);
+    transition: background var(--transition-speed);
 }
 
 .services-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 20px;
     font-weight: 800;
+    color: var(--title); /* ¡Dinámico! */
+    transition: color var(--transition-speed);
 }
 
 .services-subtitle {
-    color: var(--text-gray);
+    color: var(--text); /* ¡Dinámico! Antes var(--text-gray) */
     font-size: 1.2rem;
     max-width: 700px;
     margin: 0 auto;
     line-height: 1.6;
+    transition: color var(--transition-speed);
 }
 
 /* --- GRID DE FACULTADES --- */
@@ -32,12 +37,12 @@
 }
 
 .faculty-card {
-    background: rgba(20, 20, 25, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
+    background: var(--bg-card); /* ¡Dinámico! Antes rgba(20, 20, 25, 0.6) */
+    border: 1px solid var(--border-card); /* ¡Dinámico! */
+    border-radius: var(--border-radius); /* Variable global */
     overflow: hidden;
     position: relative;
-    transition: all 0.4s ease;
+    transition: all var(--transition-speed) ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -47,7 +52,7 @@
 .faculty-card:hover {
     transform: translateY(-10px);
     border-color: var(--primary-color);
-    box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Sombra genérica para profundidad */
 }
 
 .card-visual {
@@ -60,7 +65,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.6s ease, filter var(--transition-speed);
     filter: grayscale(80%) brightness(0.7);
 }
 
@@ -75,12 +80,13 @@
     left: 0;
     width: 100%;
     padding: 20px;
-    background: linear-gradient(to top, #000 0%, transparent 100%);
+    /* Gradiente dinámico usando el color de la tarjeta */
+    background: linear-gradient(to top, var(--bg-card) 0%, transparent 100%);
 }
 
 .faculty-icon {
-    background: var(--primary-color);
-    color: black;
+    background: var(--btn-bg); /* ¡Dinámico! Usamos el fondo del botón */
+    color: var(--btn-text);
     width: 50px;
     height: 50px;
     border-radius: 12px;
@@ -89,6 +95,7 @@
     justify-content: center;
     margin-bottom: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: background var(--transition-speed), color var(--transition-speed);
 }
 
 .card-info {
@@ -102,13 +109,22 @@
 .card-info h3 {
     font-size: 1.8rem;
     margin-bottom: 10px;
-    color: white;
+    color: var(--title); /* ¡Dinámico! Antes white */
+    font-weight: 800; /* Aseguramos que resalte */
+    transition: color var(--transition-speed) ease;
+}
+
+/* Efecto hover en el título de la tarjeta */
+.faculty-card:hover .card-info h3 {
+    color: var(--primary-color);
 }
 
 .card-info p {
-    color: var(--text-gray);
+    color: var(--text); /* ¡Dinámico! Antes var(--text-gray) */
     font-size: 0.95rem;
     margin-bottom: 20px;
+    line-height: 1.6;
+    transition: color var(--transition-speed);
 }
 
 .btn-link {
@@ -121,25 +137,29 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    transition: color var(--transition-speed);
 }
 
 /* --- SECCIÓN DE PRODUCTOS / PARTNERS --- */
 .partners-section {
     padding: 80px 5%;
-    background: #050505;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    background: var(--bg); /* ¡Dinámico! Antes #050505 */
+    border-top: 1px solid var(--border-card); /* ¡Dinámico! */
     text-align: center;
+    transition: background var(--transition-speed);
 }
 
 .partners-banner {
-    background: linear-gradient(90deg, #111 0%, #1a1a1a 50%, #111 100%);
+    /* Gradiente dinámico usando bg y bg-card */
+    background: linear-gradient(90deg, var(--bg) 0%, var(--bg-card) 50%, var(--bg) 100%);
     border-radius: 20px;
     padding: 60px;
     position: relative;
     overflow: hidden;
     max-width: 1200px;
     margin: 0 auto;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid var(--border-card); /* ¡Dinámico! */
+    transition: background var(--transition-speed), border-color var(--transition-speed);
 }
 
 .tech-grid {
@@ -148,15 +168,21 @@
     gap: 40px;
     flex-wrap: wrap;
     margin-top: 40px;
-    opacity: 0.7;
+    opacity: 0.8; /* Aumenté un poco la opacidad para mejor lectura */
 }
 
 .tech-badge {
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid var(--border-card); /* ¡Dinámico! */
     padding: 10px 20px;
     border-radius: 50px;
     font-size: 0.9rem;
-    color: white;
+    color: var(--text); /* ¡Dinámico! Antes white */
+    transition: all var(--transition-speed);
+}
+
+.tech-badge:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 /* --- ESTILOS ESPECÍFICOS PARA SUB-PÁGINAS --- */
@@ -168,6 +194,7 @@
     padding-bottom: 60px;
     padding-left: 10%;
     overflow: hidden;
+    background-color: var(--bg); /* Asegura fondo si la imagen no carga */
 }
 
 .sub-hero-bg {
@@ -191,18 +218,23 @@
 }
 
 .syllabus-item {
-    background: rgba(255,255,255,0.03);
-    border-left: 3px solid var(--primary-color);
+    background: var(--bg-card); /* ¡Dinámico! Antes rgba(255,255,255,0.03) */
+    border: 1px solid var(--border-card); /* Agregué borde completo sutil */
+    border-left: 4px solid var(--primary-color); /* Hice el borde izquierdo más grueso */
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 0 12px 12px 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    transition: background var(--transition-speed), border-color var(--transition-speed);
 }
 
 .enroll-sidebar {
     flex: 1;
-    background: rgba(0,229,255,0.05);
+    /* Fondo que usa el primary-color pero súper transparente para darle ese tinte neón */
+    background: color-mix(in srgb, var(--primary-color) 5%, var(--bg-card));
     padding: 30px;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     border: 1px solid var(--primary-color);
     height: fit-content;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el sidebar */
+    transition: background var(--transition-speed);
 }

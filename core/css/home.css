@@ -284,13 +284,13 @@
 .card-content h3 {
     font-size: 1.6rem;
     margin-bottom: 10px;
-    color: var(--title);
+    color: var(--title)!important;
     /* ¡Dinámico! Antes fijo: white */
     transition: color var(--transition-speed);
 }
 
 .card-content p {
-    color: var(--text);
+    color: var(--text) !important;
     /* ¡Dinámico! Antes fijo: var(--text-gray) */
     font-size: 0.95rem;
     margin-bottom: 25px;

@@ -42,14 +42,20 @@ window.ThemeManager = {
         dark: {
             '--bg': '#0a0a0c',
             '--bg-card': '#121217',
+            '--bg-modal': '#1a1a1f', // Fondo del modal oscuro
             '--title': '#ffffff',
-            '--text': '#d1d5db'
+            '--text': '#d1d5db',
+            '--border-card': 'rgba(255, 255, 255, 0.1)', // Borde claro para fondo oscuro
+            '--text-dim': '#9ca3af'
         },
         light: {
             '--bg': '#edf4f4',
             '--bg-card': '#ffffff',
+            '--bg-modal': '#f8fafc', // Fondo del modal un poco más claro que blanco
             '--title': '#0a0a0c',
-            '--text': '#4b5563'
+            '--text': '#4b5563',
+            '--border-card': 'rgba(0, 0, 0, 0.1)', // Borde oscuro para fondo claro
+            '--text-dim': '#6b7280'
         }
     },
 

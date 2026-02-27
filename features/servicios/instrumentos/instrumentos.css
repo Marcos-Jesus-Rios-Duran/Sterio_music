@@ -9,7 +9,9 @@
     padding: 0 10% 60px 10%;
     overflow: hidden;
     margin-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: var(--bg); /* Color de fondo base dinámico */
+    border-bottom: 1px solid var(--border-card); /* ¡Dinámico! */
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
 }
 
 .inst-hero-bg {
@@ -20,7 +22,7 @@
 
 .inst-hero-bg img {
     width: 100%; height: 100%; object-fit: cover;
-    filter: brightness(0.4); /* Oscurecemos para que el texto resalte */
+    filter: brightness(0.4); /* Mantenemos oscuro para el contraste fotográfico */
 }
 
 .inst-hero-content {
@@ -33,20 +35,23 @@
     font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1.1;
     margin-bottom: 15px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: var(--title); /* ¡Dinámico! */
+    text-shadow: 0 10px 30px var(--bg); /* Sombra que se adapta al fondo global */
+    transition: color var(--transition-speed);
 }
 
 .inst-hero-content p {
     font-size: 1.1rem;
-    color: var(--text-gray);
+    color: var(--text); /* ¡Dinámico! Antes var(--text-gray) */
     max-width: 600px;
+    transition: color var(--transition-speed);
 }
 
 /* Botón Volver */
 .btn-back {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: white;
+    background: var(--bg-card); /* ¡Dinámico! Antes rgba(255,255,255,0.1) */
+    border: 1px solid var(--border-card); /* ¡Dinámico! */
+    color: var(--title); /* ¡Dinámico! Antes white */
     padding: 8px 16px;
     border-radius: 50px;
     display: inline-flex;
@@ -55,17 +60,21 @@
     cursor: pointer;
     margin-bottom: 20px;
     backdrop-filter: blur(5px);
-    transition: 0.3s;
+    transition: all var(--transition-speed) ease;
 }
+
 .btn-back:hover {
-    background: var(--primary-color);
-    color: black;
-    border-color: var(--primary-color);
+    background: var(--btn-bg); /* ¡Usa la variable de botones! */
+    color: var(--btn-text);
+    border-color: var(--btn-bg);
+    transform: translateX(-5px); /* Pequeño efecto al hacer hover */
 }
 
 /* --- GRID DE TARJETAS CON IMAGEN --- */
 .catalog-section {
     padding: 0 10% 100px 10%;
+    background-color: var(--bg); /* Asegura que la sección tome el fondo global */
+    transition: background-color var(--transition-speed);
 }
 
 .catalog-grid {
@@ -76,17 +85,19 @@
 
 .inst-card {
     position: relative;
-    height: 350px; /* Más altas para lucir la imagen */
-    border-radius: 20px;
+    height: 350px;
+    border-radius: var(--border-radius); /* Usamos el radio global */
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid var(--border-card); /* ¡Dinámico! */
+    background-color: var(--bg-card);
+    transition: transform 0.4s ease, border-color var(--transition-speed), box-shadow 0.4s ease;
 }
 
 .inst-card:hover {
     transform: translateY(-10px);
-
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
 /* Imagen de fondo de la tarjeta */
@@ -95,12 +106,12 @@
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease, filter 0.4s ease;
-    filter: grayscale(100%) brightness(0.6); /* Efecto elegante inicial */
+    filter: grayscale(100%) brightness(0.6);
 }
 
 .inst-card:hover .card-bg-image {
-    transform: scale(1.1); /* Zoom al hacer hover */
-    filter: grayscale(0%) brightness(0.8); /* Recupera color */
+    transform: scale(1.1);
+    filter: grayscale(0%) brightness(0.9);
 }
 
 /* Contenido sobre la imagen */
@@ -108,7 +119,8 @@
     position: absolute;
     bottom: 0; left: 0; width: 100%;
     padding: 25px;
-    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    /* EL TRUCO: Gradiente dinámico usando el color de las tarjetas */
+    background: linear-gradient(to top, var(--bg-card) 5%, transparent);
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -119,22 +131,30 @@
 .card-content h3 {
     font-size: 1.8rem;
     margin-bottom: 8px;
-    color: white;
+    color: var(--title); /* ¡Dinámico! Antes white */
     font-weight: 800;
     text-transform: uppercase;
+    transition: color var(--transition-speed) ease;
+}
+
+/* Hover de la card afecta al título para darle vida */
+.inst-card:hover .card-content h3 {
+    color: var(--primary-color);
 }
 
 .card-content p {
-    color: #ddd;
+    color: var(--text); /* ¡Dinámico! Antes #ddd */
     font-size: 0.95rem;
     margin-bottom: 15px;
-    opacity: 0.8;
+    opacity: 0.9;
+    transition: color var(--transition-speed) ease;
 }
 
+/* Etiqueta de Acción ("Ver Curso") */
 .action-badge {
     align-self: flex-start;
-    background: var(--primary-color);
-    color: black;
+    background: var(--btn-bg); /* ¡Dinámico! Usa el fondo de botones */
+    color: var(--btn-text);    /* ¡Dinámico! Usa el texto de botones */
     padding: 6px 12px;
     border-radius: 4px;
     font-weight: 700;
@@ -142,7 +162,7 @@
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(10px);
-    transition: 0.3s ease;
+    transition: all var(--transition-speed) ease;
 }
 
 .inst-card:hover .action-badge {

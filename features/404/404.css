@@ -8,6 +8,8 @@
     position: relative;
     overflow: hidden;
     padding: 20px;
+    background-color: var(--bg); /* Aseguramos que tome el fondo global */
+    transition: background-color var(--transition-speed);
 }
 
 /* Layout General */
@@ -39,9 +41,11 @@
 .broken-record-svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 20px 40px rgb(255, 255, 255));
+    /* TRUCO NEÓN: Cambiamos la sombra blanca por un resplandor de tu color de identidad */
+    filter: drop-shadow(0 15px 30px var(--primary-color));
     /* Inicialmente las partes están juntas, JS las separará */
     transform: scale(0.95);
+    transition: filter var(--transition-speed) ease;
 }
 
 /* --- COLUMNA TEXTO --- */
@@ -55,7 +59,8 @@
     font-weight: 800;
     line-height: 1;
     margin-bottom: 20px;
-    color: white;
+    color: var(--title); /* ¡Dinámico! Antes white */
+    transition: color var(--transition-speed);
 }
 
 .glitch-text {
@@ -66,12 +71,13 @@
 
 .error-subtitle {
     font-size: 1.1rem;
-    color: var(--text-gray);
+    color: var(--text); /* ¡Dinámico! Antes var(--text-gray) */
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    transition: color var(--transition-speed);
 }
 
 /* --- ANIMACIÓN NOTAS ROTAS --- */
@@ -98,10 +104,12 @@
     background-color: var(--primary-color);
     border-radius: 2px;
 }
+
 /* Opcional: Si quieres que las grietas brillen más al separarse */
 .shattered-group {
     transform-origin: center;
 }
+
 /* --- RESPONSIVE (Escritorio) --- */
 @media (min-width: 900px) {
     .error-content {
