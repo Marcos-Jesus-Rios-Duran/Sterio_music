@@ -24,16 +24,20 @@
     line-height: 1.1;
     margin-bottom: 25px;
     font-weight: 700;
+    color: var(--title);
+    /* ¡Dinámico! Antes fijo: no tenía o heredaba */
 }
 
 .brand-name .letter {
     display: inline-block;
     line-height: 1em;
+    color: var(--primary-color);
 }
 
 .hero-content p {
     font-size: 1.2rem;
-    color: var(--text-gray);
+    color: var(--text);
+    /* ¡Dinámico! Antes fijo: var(--text-gray) viejo */
     margin-bottom: 40px;
     max-width: 550px;
 }
@@ -50,11 +54,14 @@
 
 .glass-card {
     min-height: 350px;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-card);
+    /* ¡Dinámico! Antes fijo: rgba(255,255,255,0.03) */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    border: 1px solid var(--border-card);
+    /* ¡Dinámico! */
+    border-radius: var(--border-radius);
+    /* Usamos tu variable global */
     width: 100%;
     max-width: 600px;
     height: 350px;
@@ -62,13 +69,15 @@
     opacity: 1;
     position: relative;
     overflow: hidden;
+    transition: all var(--transition-speed);
 }
 
 .image-wheel {
     position: relative;
     width: 100%;
     height: 100%;
-    background: #121217;
+    background: var(--bg-card);
+    /* ¡Dinámico! Antes fijo: #121217 */
 }
 
 .wheel-item {
@@ -136,19 +145,19 @@
     flex-direction: column;
 }
 
-/* --- Títulos (Ajustado a tamaño más grande) --- */
+/* --- Títulos --- */
 .section-title {
     text-align: left;
     width: 100%;
     max-width: 100%;
     font-size: clamp(3rem, 6vw, 4.4rem);
     line-height: 1.1;
-    color: white;
+    color: var(--title);
+    /* ¡Dinámico! Antes fijo: white */
     opacity: 0;
     z-index: 2;
     margin-left: -180px;
-
-
+    transition: color var(--transition-speed);
 }
 
 .section-title span {
@@ -162,19 +171,18 @@
     max-width: 100%;
     margin-top: -50px;
     margin-bottom: 60px;
-    color: white;
+    color: var(--text-dim);
+    /* ¡Dinámico! Antes fijo: white con opacidad */
     font-size: 1.95rem;
     font-style: italic;
     font-weight: 300;
-    opacity: 0.8;
     padding-right: 20px;
+    transition: color var(--transition-speed);
 }
 
-/* Opcional: Si en móvil se ve raro a la derecha, lo centramos */
 @media (max-width: 768px) {
     .section-subtitle {
         text-align: left;
-        /* O center */
         padding-right: 0;
         margin-bottom: 40px;
     }
@@ -193,7 +201,8 @@
 
 .track-path {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.05);
+    stroke: var(--border-card);
+    /* ¡Dinámico! Antes fijo: rgba(255,255,255,0.05) */
     stroke-width: 6;
     stroke-linecap: round;
 }
@@ -212,42 +221,45 @@
    ========================================================================== */
 .cards-grid {
     display: grid;
-    /* Responsive automático sin media queries */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
     width: 100%;
     max-width: 1200px;
-    /* justify-items: start; <- Puedes cambiar a 'center' si quieres centrarlas */
     justify-items: center;
 }
 
 .promo-card {
-    background: rgba(15, 15, 20, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-card);
+    /* ¡Dinámico! Antes fijo: rgba(15,15,20,0.8) */
+    border: 1px solid var(--border-card);
+    /* ¡Dinámico! Antes fijo: rgba(255,255,255,0.1) */
     backdrop-filter: blur(10px);
-    border-radius: 20px;
+    border-radius: var(--border-radius);
+    /* Variable global */
     overflow: hidden;
     opacity: 0;
-    transition: all 0.4s ease;
+    transition: all var(--transition-speed);
     width: 100%;
     max-width: 350px;
-    /* Le di un pelín más de ancho */
     display: flex;
     flex-direction: column;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* La sombra puede quedarse oscura para profundidad */
 }
 
 .promo-card:hover {
     transform: translateY(-10px);
     border-color: var(--primary-color);
-    box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
+    /* Aquí usamos el glow del primary color */
+    box-shadow: 0 0 25px var(--primary-color);
 }
 
 .card-image-container {
     width: 100%;
     height: 220px;
     overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--border-card);
+    /* ¡Dinámico! */
 }
 
 .card-img {
@@ -272,13 +284,17 @@
 .card-content h3 {
     font-size: 1.6rem;
     margin-bottom: 10px;
-    color: white;
+    color: var(--title);
+    /* ¡Dinámico! Antes fijo: white */
+    transition: color var(--transition-speed);
 }
 
 .card-content p {
-    color: var(--text-gray);
+    color: var(--text);
+    /* ¡Dinámico! Antes fijo: var(--text-gray) */
     font-size: 0.95rem;
     margin-bottom: 25px;
+    transition: color var(--transition-speed);
 }
 
 .card-link {
@@ -289,7 +305,7 @@
     align-items: center;
     gap: 5px;
     opacity: 0.8;
-    transition: opacity 0.3s;
+    transition: opacity var(--transition-speed), color var(--transition-speed);
 }
 
 .card-link:hover {
@@ -302,23 +318,24 @@
    ========================================================================== */
 .features-highlight {
     margin-top: 120px;
-    /* Separación de las cards de arriba */
     padding: 20px 0;
     width: 100%;
 }
 
 .features-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-card);
+    /* ¡Dinámico! Antes fijo: rgba(255,255,255,0.02) */
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-card);
+    /* ¡Dinámico! Antes fijo: rgba(255,255,255,0.08) */
     border-radius: 24px;
     padding: 60px 40px;
-    /* Más padding interno para elegancia */
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: background var(--transition-speed), border-color var(--transition-speed);
 }
 
 .features-grid {
@@ -330,7 +347,7 @@
 
 .feature-item {
     padding: 10px;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease;
 }
 
 .feature-item:hover {
@@ -344,10 +361,13 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 800;
+    transition: color var(--transition-speed);
 }
 
 .feature-item p {
-    color: var(--text-gray);
+    color: var(--text);
+    /* ¡Dinámico! Antes fijo: var(--text-gray) */
     font-size: 1rem;
     line-height: 1.7;
+    transition: color var(--transition-speed);
 }
