@@ -9,24 +9,27 @@
 /* ==========================================================================
    1. VARIABLES DE ENTORNO (Design Tokens)
    ========================================================================== */
+
 :root {
-    /* Color de identidad: Cyan Neón */
+    /* Identidad: Se mantiene constante a menos que uses la paleta */
     --primary-color: #00e5ff;
 
-    /* Paleta de Oscuros */
+    /* Paleta de Oscuros (POR DEFECTO) */
     --bg-dark: #0a0a0c;       /* Fondo principal */
-    --surface-dark: #121217;  /* Color para tarjetas o secciones */
+    --surface-dark: #121217;  /* Tarjetas/Secciones */
 
-    /* Tipografía y Textos */
-    --text-main: #ffffff;     /* Texto principal (blanco) */
-    --text-gray: #d1d5db;     /* Texto secundario / gris */
+    /* Textos */
+    --text-main: #ffffff;
+    --text-gray: #d1d5db;
     --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
 
-    /* Espaciados y Bordes */
+    /* Efectos de Brillo (Glow) */
+    --glow-opacity: 0.6;
+
+    /* Estructura */
     --border-radius: 12px;
     --transition-speed: 0.3s;
 }
-
 /* ==========================================================================
    2. RESET Y NORMALIZACIÓN
    ========================================================================== */
@@ -45,9 +48,7 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: var(--font-main);
-    line-height: 1.6;
-    overflow-x: hidden; /* Evita scroll horizontal accidental */
-    min-height: 100vh;
+    transition: background-color var(--transition-speed),
 }
 #navbar-shell {
     min-height: 85px; /* Altura de tu navbar */
@@ -67,14 +68,7 @@ body {
  * Permite que el contenido haga scroll mientras las luces quedan fijas.
  */
 .main-bg-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Envía al fondo absoluto */
-    overflow: hidden;
-    background: radial-gradient(circle at 50% 50%, #121217 0%, #0a0a0c 100%);
+    background: radial-gradient(circle at 50% 50%, var(--surface-dark) 0%, var(--bg-dark) 100%);
 }
 
 /* Luces de ambiente (Glows) */
@@ -159,6 +153,12 @@ body {
 /* ==========================================================================
    5. HELPERS DE ACCESIBILIDAD
    ========================================================================== */
+/* Las cards ahora son 100% dinámicas */
+.card-style, .instrument-card {
+    background-color: var(--surface-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Puedes cambiar esto a var(--primary-color) con transparencia */
+    transition: transform 0.3s, border-color 0.3s;
+}
 .sr-only {
     position: absolute;
     width: 1px;

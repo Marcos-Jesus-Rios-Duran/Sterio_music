@@ -32,110 +32,114 @@ async function loadShellComponent(id, url) {
 // ==========================================
 // THEME MANAGER (Cumpliendo el principio DRY)
 // ==========================================
-// app.js
-
 window.ThemeManager = {
-    currentColor: '#00ffff', // Color real aplicado
-    tempColor: '#00ffff',    // Color que el usuario está probando
-    activeBtn: null,         // Referencia al botón que abrió la paleta
+    currentMode: 'dark',
+    savedSettings: {},
 
-    openPalette: function (btnElement) {
-        this.activeBtn = btnElement;
-        let colorInput = document.getElementById('global-color-picker');
-
-        if (!colorInput) {
-            colorInput = document.createElement('input');
-            colorInput.type = 'color';
-            colorInput.id = 'global-color-picker';
-            colorInput.style.display = 'none';
-            document.body.appendChild(colorInput);
-
-            // 1. Mientras el usuario mueve el cursor en la paleta
-            colorInput.addEventListener('input', (e) => {
-                this.tempColor = e.target.value;
-                // Previsualización ligera solo en el icono del botón activo
-                if (this.activeBtn) {
-                    const icon = this.activeBtn.querySelector('span');
-                    if (icon) icon.style.color = this.tempColor;
-                }
-            });
-
-            // 2. Cuando el usuario hace click en "Aceptar" en la paleta NATIVA o la cierra
-            colorInput.addEventListener('change', () => {
-                this.showModal();
-            });
+    // Presets para cambio rápido (Tus colores de React para el modo claro)
+    presets: {
+        dark: {
+            '--bg-dark': '#0a0a0c',
+            '--surface-dark': '#121217',
+            '--text-main': '#ffffff',
+            '--text-gray': '#d1d5db'
+        },
+        light: {
+            '--bg-dark': '#edf4f4',
+            '--surface-dark': '#ffffff',
+            '--text-main': '#0a0a0c',
+            '--text-gray': '#4b5563'
         }
-
-        colorInput.value = this.currentColor;
-        setTimeout(() => colorInput.click(), 10);
     },
 
-    showModal: function () {
+    // 1. Cambiar entre Modo Claro y Oscuro (Botón del Sol/Luna)
+    toggleMode: function() {
+        this.currentMode = this.currentMode === 'dark' ? 'light' : 'dark';
+        this.applyPreset(this.currentMode);
+        this.saveToStorage();
+    },
+
+    applyPreset: function(mode) {
+        const colors = this.presets[mode];
+        Object.keys(colors).forEach(key => {
+            document.documentElement.style.setProperty(key, colors[key]);
+        });
+
+        // Actualizar el icono del botón en el Navbar
+        const icon = document.getElementById('mode-icon');
+        if (icon) {
+            icon.textContent = mode === 'dark' ? 'light_mode' : 'dark_mode';
+        }
+    },
+
+    // 2. Abrir Panel de Personalización (Botón de Paleta)
+    // Se llama openPalette porque así lo tienes en el HTML del navbar
+    openPalette: function() {
+        this.showModal();
+    },
+
+    showModal: function() {
+        // Guardamos el estado actual por si el usuario cancela
+        this.savedSettings = {
+            '--primary-color': getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim(),
+            '--bg-dark': getComputedStyle(document.documentElement).getPropertyValue('--bg-dark').trim(),
+            '--surface-dark': getComputedStyle(document.documentElement).getPropertyValue('--surface-dark').trim()
+        };
+
         const modal = document.getElementById('theme-modal');
-        const preview = document.getElementById('theme-preview-circle');
-
-        preview.style.backgroundColor = this.tempColor;
-        modal.classList.remove('hidden');
-
-        // Animación de entrada (Usando anime.js que ya tienes en el proyecto)
-        if (window.anime) {
-            anime({
-                targets: '#theme-modal .modal-content',
-                scale: [0.9, 1],
-                opacity: [0, 1],
-                duration: 400,
-                easing: 'easeOutBack'
-            });
-        }
+        if (modal) modal.classList.remove('hidden');
     },
 
-    // Sterio_music/app.js
-
-    confirmChange: function () {
-        this.currentColor = this.tempColor;
-        document.documentElement.style.setProperty('--primary-color', this.currentColor);
-
-        // También aplicamos a los badges por si acaso
-        this.applyToBadges();
-
-        this.closeModal();
-        console.log("SteroMusic Theme Global Updated: " + this.currentColor);
+    // 3. Previsualización en tiempo real
+    preview: function(variable, value) {
+        document.documentElement.style.setProperty(variable, value);
     },
 
-    cancelChange: function () {
-        // Si cancela, regresamos el icono del botón al color que ya teníamos
-        if (this.activeBtn) {
-            const icon = this.activeBtn.querySelector('span');
-            if (icon) icon.style.color = this.currentColor;
-        }
-        this.closeModal();
+    confirmChange: function() {
+        const modal = document.getElementById('theme-modal');
+        if (modal) modal.classList.add('hidden');
+        this.saveToStorage();
     },
 
-    applyToBadges: function () {
-        // pero lo dejamos para las clases que no usan la variable
-        document.querySelectorAll('.action-badge').forEach(badge => {
-            badge.style.backgroundColor = this.currentColor;
-            badge.style.color = '#000';
+    cancelChange: function() {
+        // Revertimos a los colores que guardamos al abrir el modal
+        Object.keys(this.savedSettings).forEach(key => {
+            document.documentElement.style.setProperty(key, this.savedSettings[key]);
         });
-    },
-    closeModal: function () {
-        document.getElementById('theme-modal').classList.add('hidden');
+
+        const modal = document.getElementById('theme-modal');
+        if (modal) modal.classList.add('hidden');
     },
 
-    applyToBadges: function () {
-        document.querySelectorAll('.action-badge').forEach(badge => {
-            badge.style.backgroundColor = this.currentColor;
-            badge.style.color = '#000';
-        });
+    // 4. Persistencia en LocalStorage
+    saveToStorage: function() {
+        const config = {
+            mode: this.currentMode,
+            primary: getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim(),
+            bg: getComputedStyle(document.documentElement).getPropertyValue('--bg-dark').trim(),
+            surface: getComputedStyle(document.documentElement).getPropertyValue('--surface-dark').trim()
+        };
+        localStorage.setItem('stero_custom_theme', JSON.stringify(config));
     },
 
-    onCardHover: function (card) {
-        card.style.borderColor = this.currentColor;
-        card.style.boxShadow = `0 20px 40px ${this.currentColor}55`;
-    },
+    init: function() {
+        const saved = JSON.parse(localStorage.getItem('stero_custom_theme'));
+        if (saved) {
+            this.currentMode = saved.mode || 'dark';
 
-    onCardLeave: function (card) {
-        card.style.borderColor = 'rgba(255,255,255,0.1)';
-        card.style.boxShadow = 'none';
+            // Aplicar el modo (Claro/Oscuro)
+            this.applyPreset(this.currentMode);
+
+            // Aplicar colores personalizados si existen
+            if (saved.primary) document.documentElement.style.setProperty('--primary-color', saved.primary);
+            if (saved.bg) document.documentElement.style.setProperty('--bg-dark', saved.bg);
+            if (saved.surface) document.documentElement.style.setProperty('--surface-dark', saved.surface);
+        } else {
+            // Si no hay nada guardado, forzamos el modo oscuro por defecto
+            this.applyPreset('dark');
+        }
     }
 };
+
+// Iniciar al cargar el DOM
+document.addEventListener('DOMContentLoaded', () => ThemeManager.init());
