@@ -1,9 +1,9 @@
 /**
- * STERO MUSIC - Estilos Globales (Base del Proyecto)
+ * STERO MUSIC - Estilos Globales (Refactor Maestro)
  * Proyecto: Plataforma de Formación Musical Integral
  * Autor: Marcos
- * * NOTA: Este archivo controla los cimientos visuales.
- * Modificar con precaución para evitar errores en cascada.
+ * * NOTA: Este archivo es la ÚNICA fuente de verdad para colores y estilos.
+ * Todo componente debe usar las variables del :root para ser personalizable.
  */
 
 /* ==========================================================================
@@ -11,69 +11,86 @@
    ========================================================================== */
 
 :root {
-    /* Identidad: Se mantiene constante a menos que uses la paleta */
-    --primary-color: #00e5ff;
+    /* --- IDENTIDAD Y ACENTO --- */
+    --primary-color: #00e5ff;   /* Color de identidad (Cyan Neón) */
 
-    /* Paleta de Oscuros (POR DEFECTO) */
-    --bg-dark: #0a0a0c;       /* Fondo principal */
-    --surface-dark: #121217;  /* Tarjetas/Secciones */
+    /* --- SUPERFICIES Y FONDOS --- */
+    --bg: #0a0a0c;              /* Fondo principal de la web */
+    --bg-card: #121217;         /* Fondo de tarjetas y secciones */
+    --bg-modal: #1a1a1f;        /* Fondo de ventanas emergentes */
 
-    /* Textos */
-    --text-main: #ffffff;
-    --text-gray: #d1d5db;
+    /* --- TEXTOS --- */
+    --title: #ffffff;           /* Color para h1, h2, h3 y nombres de marca */
+    --text: #d1d5db;            /* Color para párrafos y lectura general */
+    --text-dim: #9ca3af;        /* Color para textos secundarios o desactivados */
+
+    /* --- BORDES Y LÍNEAS --- */
+    --border-card: rgba(255, 255, 255, 0.1); /* Borde de las tarjetas */
+    --border-btn: var(--primary-color);      /* Borde de botones secundarios */
+
+    /* --- BOTONES --- */
+    --btn-bg: var(--primary-color);          /* Fondo del botón principal */
+    --btn-text: #000000;                     /* Texto del botón principal */
+
+    /* --- DINÁMICAS Y ESTRUCTURA --- */
     --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
-
-    /* Efectos de Brillo (Glow) */
     --glow-opacity: 0.6;
-
-    /* Estructura */
     --border-radius: 12px;
-    --transition-speed: 0.3s;
+    --transition-speed: 0.3s ease; /* Corregido: Siempre incluir tiempo y curva */
 }
+
 /* ==========================================================================
-   2. RESET Y NORMALIZACIÓN
+   2. RESET ESTRUCTURAL Y NORMALIZACIÓN
    ========================================================================== */
 * {
     margin: 0;
     padding: 0;
-    /* Incluye padding y border en el cálculo del ancho total */
-    box-sizing: border-box;
+    box-sizing: border-box; /* Incluye padding/border en el cálculo del ancho */
 }
 
 html {
-    scroll-behavior: smooth; /* Desplazamiento suave para navegación interna */
+    scroll-behavior: smooth;
+    width: 100%;
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
+    background-color: var(--bg);
+    color: var(--text);
     font-family: var(--font-main);
-    transition: background-color var(--transition-speed),
+    width: 100%;
+    overflow-x: hidden; /* ¡ADIÓS SCROLL HORIZONTAL! */
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
+
+/* Contenedores de carga (Shells) */
 #navbar-shell {
-    min-height: 85px; /* Altura de tu navbar */
-    background: var(--bg-dark);
+    min-height: 85px;
+    background: var(--bg);
 }
 
 #main-content {
-    min-height: 80vh; /* Reserva la mayor parte de la pantalla */
+    min-height: 80vh;
 }
 
 /* ==========================================================================
-   3. SISTEMA DE FONDO (Background & Glows)
+   3. SISTEMA DE FONDO (Ambiente y Glows)
    ========================================================================== */
 
-/**
- * Contenedor fijo que genera el ambiente oscuro y los gradientes de luz.
- * Permite que el contenido haga scroll mientras las luces quedan fijas.
- */
 .main-bg-container {
-    background: radial-gradient(circle at 50% 50%, var(--surface-dark) 0%, var(--bg-dark) 100%);
+    background: radial-gradient(circle at 50% 50%, var(--bg-card) 0%, var(--bg) 100%);
+    position: relative;
+    width: 100%;
 }
 
-/* Luces de ambiente (Glows) */
-.glow-1 {
+/* Luces de ambiente (Glows dinámicos) */
+.glow-1, .glow-2 {
     position: absolute;
+    border-radius: 50%;
+    pointer-events: none; /* No interfieren con los clics */
+    z-index: 0;
+}
+
+.glow-1 {
     top: -10%;
     right: -10%;
     width: 600px;
@@ -81,84 +98,107 @@ body {
     background: var(--primary-color);
     opacity: 0.12;
     filter: blur(120px);
-    border-radius: 50%;
 }
 
 .glow-2 {
-    position: absolute;
     bottom: -10%;
     left: -10%;
     width: 500px;
     height: 500px;
-    background: #2563eb; /* Acento azul profundo */
+    background: #2563eb; /* Acento azul profundo fijo para contraste */
     opacity: 0.1;
     filter: blur(100px);
-    border-radius: 50%;
 }
 
 /* ==========================================================================
-   4. COMPONENTES GLOBALES (Utility Classes)
+   4. COMPONENTES GLOBALES (Clases de Utilidad)
    ========================================================================== */
 
-/* Marca de la empresa con color Cyan */
-.brand-name {
-    color: var(--primary-color);
+/* Marca y Títulos */
+.brand-name, h1, h2, h3 {
+    color: var(--title);
     font-weight: 800;
 }
 
-/* Botonería Estándar */
-.btn-group {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+/* Cards Dinámicas (Cumpliendo DRY) */
+.card-style, .instrument-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-speed), border-color var(--transition-speed);
 }
 
-/* Botón Principal (Cyan Brillante) */
+/* Botonería Estándar */
 .btn-primary {
-    background-color: var(--primary-color);
-    color: #000;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
     padding: 16px 32px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
-    transition: all var(--transition-speed) ease;
-    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+    border: none;
+    transition: all var(--transition-speed);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5);
-    background-color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
+    filter: brightness(1.1);
 }
 
-/* Botón Secundario (Contorno Blanco) */
 .btn-secondary {
     background: transparent;
-    color: white;
+    color: var(--title);
     padding: 16px 32px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all var(--transition-speed) ease;
+    border: 1px solid var(--border-btn);
+    transition: all var(--transition-speed);
 }
 
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--title);
 }
 
 /* ==========================================================================
-   5. HELPERS DE ACCESIBILIDAD
+   5. SISTEMA DE MODALES (Tema y Personalización)
    ========================================================================== */
-/* Las cards ahora son 100% dinámicas */
-.card-style, .instrument-card {
-    background-color: var(--surface-dark);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Puedes cambiar esto a var(--primary-color) con transparencia */
-    transition: transform 0.3s, border-color 0.3s;
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity var(--transition-speed);
 }
+
+.modal-content.card-style {
+    background-color: var(--bg-modal);
+    padding: 40px;
+    max-width: 500px;
+    width: 95%;
+    border: 1px solid var(--border-card);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.modal-overlay.hidden {
+    display: none !important;
+}
+
+/* Accesibilidad */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -168,38 +208,4 @@ body {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
-}
-
-/* core/css/globals.css */
-
-/* Overlay que cubre toda la pantalla */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
-    backdrop-filter: blur(8px);    /* Efecto de desenfoque pro */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;                 /* Siempre por encima de todo */
-    transition: opacity 0.3s ease;
-}
-
-/* Caja del modal centrada */
-.modal-content.card-style {
-    background: #121217;
-    padding: 40px;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-
-/* Clase para ocultar */
-.modal-overlay.hidden {
-    display: none !important;
 }

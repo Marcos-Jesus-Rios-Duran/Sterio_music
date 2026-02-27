@@ -111,6 +111,30 @@ window.ThemeManager = {
         if (modal) modal.classList.add('hidden');
     },
 
+    // ============================================================
+    // NUEVO: Función para restablecer todo por defecto
+    // ============================================================
+    resetToDefaults: function() {
+        // 1. Quitamos los estilos inyectados en el HTML
+        const variablesToReset = ['--primary-color', '--bg-dark', '--surface-dark', '--text-main', '--text-gray'];
+        variablesToReset.forEach(variable => {
+            document.documentElement.style.removeProperty(variable);
+        });
+
+        // 2. Borramos la memoria local
+        localStorage.removeItem('stero_custom_theme');
+
+        // 3. Forzamos el modo oscuro (por si estaban en modo claro)
+        this.currentMode = 'dark';
+        this.applyPreset('dark');
+
+        // 4. Cerramos el modal
+        const modal = document.getElementById('theme-modal');
+        if (modal) modal.classList.add('hidden');
+
+        console.log("SteroMusic: Tema restablecido con éxito.");
+    },
+
     // 4. Persistencia en LocalStorage
     saveToStorage: function() {
         const config = {
