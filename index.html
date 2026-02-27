@@ -46,5 +46,19 @@
 
     <script src="/app.js" defer></script>
 </body>
+        <div id="theme-modal" class="modal-overlay hidden">
+    <div class="modal-content card-style" style="text-align: center;">
+        <div class="modal-header">
+            <h3>Confirmar Nuevo Estilo</h3>
+        </div>
+        <p style="margin-bottom: 20px; color: var(--text-gray);">¿Deseas aplicar este color como nuevo tema de la academia?</p>
 
+        <div id="theme-preview-circle" style="width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 25px; border: 3px solid white; box-shadow: 0 0 20px rgba(0,0,0,0.5); transition: background 0.3s;"></div>
+
+        <div class="alert-actions" style="display: flex; gap: 15px; justify-content: center;">
+            <button onclick="ThemeManager.confirmChange()" class="btn-primary" style="padding: 10px 25px;">Aceptar</button>
+            <button onclick="ThemeManager.cancelChange()" class="btn-secondary-small" style="padding: 10px 25px; border: 1px solid #444;">Cancelar</button>
+        </div>
+    </div>
+</div>
 </html>

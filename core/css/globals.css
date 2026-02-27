@@ -169,3 +169,37 @@ body {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+/* core/css/globals.css */
+
+/* Overlay que cubre toda la pantalla */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    backdrop-filter: blur(8px);    /* Efecto de desenfoque pro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;                 /* Siempre por encima de todo */
+    transition: opacity 0.3s ease;
+}
+
+/* Caja del modal centrada */
+.modal-content.card-style {
+    background: #121217;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Clase para ocultar */
+.modal-overlay.hidden {
+    display: none !important;
+}

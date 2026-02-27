@@ -1,14 +1,38 @@
 // SteroMusic/core/components/navbar/navbar.js
 // 1. BASE DE DATOS
 const STERO_SEARCH_INDEX = [
-    { title: "Inicio", routeName: "Inicio", category: "General", tags: "home, bienvenida" },
-    { title: "Registro", routeName: "Registro", category: "Cuenta", tags: "login, sign up, usuario" },
-    { title: "Servicios", routeName: "Servicios", category: "Servicios", tags: "clases, cursos" },
-    { title: "Instrumentos", routeName: "Instrumentos", category: "Cursos", tags: "piano, guitarra, bateria" },
-    { title: "Producción", routeName: "Servicios", category: "Cursos", tags: "dj, daw, mezcla" },
-    { title: "Contacto", routeName: "Contacto", category: "Soporte", tags: "email, telefono" }
-];
+    // --- GENERALES ---
+    { title: "Inicio", routeName: "Inicio", category: "General", tags: "home, bienvenida, portada" },
+    { title: "Nosotros", routeName: "Nosotros", category: "Institucional", tags: "historia, misión, visión, equipo, maestros" },
+    { title: "Registro", routeName: "Registro", category: "Cuenta", tags: "login, sign up, usuario, crear cuenta, unirse" },
+    { title: "Galería", routeName: "Galería", category: "Multimedia", tags: "fotos, videos, eventos, instalaciones, estudio" },
+    { title: "Testimonios", routeName: "Testimonios", category: "Comunidad", tags: "opiniones, alumnos, reviews, experiencia" },
 
+    // --- FACULTADES PRINCIPALES ---
+    { title: "Servicios Académicos", routeName: "Servicios", category: "Servicios", tags: "clases, cursos, oferta, carreras" },
+    { title: "Facultad de Instrumentos", routeName: "Instrumentos", category: "Cursos", tags: "música, ejecución, aprender a tocar" },
+    { title: "Producción Musical", routeName: "Producción", category: "Cursos", tags: "audio, ingeniería, estudio de grabación" },
+    { title: "Vocal Performance", routeName: "Canto", category: "Cursos", tags: "voz, canto, coro, técnica vocal, cantar" },
+
+    // --- INSTRUMENTOS ESPECÍFICOS ---
+    { title: "Piano & Teclas", routeName: "Piano", category: "Instrumentos", tags: "piano, sintetizador, jazz, clásico, teclado" },
+    { title: "Guitarra & Bajo", routeName: "Guitarra", category: "Instrumentos", tags: "guitarra eléctrica, acústica, bajo, ukelele, cuerdas, rock" },
+    { title: "Batería & Percusión", routeName: "Batería", category: "Instrumentos", tags: "bateria, tambores, ritmo, percusión, groove" },
+    { title: "Violín & Cuerdas", routeName: "Violín", category: "Instrumentos", tags: "violin, viola, cello, contrabajo, orquesta, cuerdas frotadas" },
+
+    // --- TEMAS DE PRODUCCIÓN  ---
+    // Nota: Como no tienes rutas específicas en routes.js para 'mezcla' o 'mastering',
+    // los dirigimos a la página general de "Producción" donde están las tarjetas.
+    { title: "Beatmaking", routeName: "Producción", category: "Producción", tags: "beats, fl studio, ableton, composición, ritmo" },
+    { title: "Mezcla (Mixing)", routeName: "Producción", category: "Producción", tags: "mezcla, mix, eq, compresión, balance" },
+    { title: "Mastering", routeName: "Producción", category: "Producción", tags: "masterización, volumen, loudness, spotify" },
+    { title: "DJ & Performance", routeName: "Producción", category: "Producción", tags: "dj, live set, electrónica, controladora" },
+    { title: "Diseño Sonoro", routeName: "Producción", category: "Producción", tags: "foley, cine, post producción, efectos" },
+
+    // --- EXTRAS Y SOPORTE ---
+    // (Si creas una ruta de contacto en el futuro, cambia el routeName a 'Contacto')
+    { title: "Contacto", routeName: "Inicio", category: "Soporte", tags: "email, telefono, ubicación, ayuda, dudas" }
+];
 // Variable para saber qué filtro está activo ('all' por defecto)
 let currentCategoryFilter = 'all';
 

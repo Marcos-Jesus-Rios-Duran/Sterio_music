@@ -86,8 +86,7 @@
 
 .inst-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    border-color: var(--primary-color);
+
 }
 
 /* Imagen de fondo de la tarjeta */
@@ -143,7 +142,7 @@
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(10px);
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .inst-card:hover .action-badge {

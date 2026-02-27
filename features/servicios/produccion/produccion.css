@@ -1,0 +1,193 @@
+/* features/servicios/produccion/produccion.css */
+
+/* --- VARIABLES LOCALES --- */
+/* Definimos el color Cyan específico de esta sección */
+.produccion-page {
+    --prod-primary: #00e5ff; /* Color Cyan eléctrico */
+    --text-gray: #b3b3b3;
+}
+
+/* --- HERO ESPECÍFICO --- */
+.prod-hero {
+    position: relative;
+    height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 10% 60px 10%;
+    overflow: hidden;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1); /* Sutil línea cyan */
+}
+
+.prod-hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+}
+
+.prod-hero-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.4) contrast(1.1); /* Un poco más de contraste para look "tech" */
+}
+
+.prod-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.prod-hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 15px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.prod-hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    max-width: 600px;
+}
+
+/* Botón Volver */
+.btn-back {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    background: var(--prod-primary);
+    color: black;
+    border-color: var(--prod-primary);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.4); /* Glow effect */
+}
+
+/* --- GRID DE TARJETAS --- */
+.catalog-section {
+    padding: 0 10% 100px 10%;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.prod-card {
+    position: relative;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s;
+}
+
+.prod-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border-color: var(--prod-primary); /* Borde Cyan al hover */
+}
+
+/* Imagen de fondo de la tarjeta */
+.card-bg-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease, filter 0.4s ease;
+    filter: grayscale(100%) brightness(0.5); /* Más oscuro por defecto para look estudio */
+}
+
+.prod-card:hover .card-bg-image {
+    transform: scale(1.1);
+    filter: grayscale(0%) brightness(0.9);
+}
+
+/* Contenido sobre la imagen */
+.card-content {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 25px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.card-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-content p {
+    color: #ddd;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.action-badge {
+    align-self: flex-start;
+    background: var(--prod-primary);
+    color: black;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.prod-card:hover .action-badge {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animaciones de entrada (reutilizamos las globales si existen, o las definimos aquí) */
+.anim-down { animation: fadeInDown 0.8s ease forwards; opacity: 0; }
+.anim-up { animation: fadeInUp 0.8s ease forwards; opacity: 0; }
+.anim-left { animation: fadeInLeft 0.8s ease forwards; opacity: 0; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive básico */
+@media (max-width: 768px) {
+    .prod-hero { height: 60vh; padding: 0 5% 40px 5%; }
+    .catalog-section { padding: 0 5% 60px 5%; }
+    .prod-hero-content h1 { font-size: 2.5rem; }
+}
