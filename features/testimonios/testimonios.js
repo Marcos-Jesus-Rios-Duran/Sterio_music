@@ -7,7 +7,6 @@ window.initTestimonios = function () {
         'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400'
     ];
 
-    // Añadimos más datos para que el carrusel circular no se quede sin contenido a la mitad
     let testimonialsData = [
         { id: 1, name: "Diego Ramírez", rating: 5, text: "La cabina de grabación es de otro nivel. Cero latencia.", img: stockImages[0] },
         { id: 2, name: "Valeria Garza", rating: 4.5, text: "Los profes de canto son cracks. ¡Mejoré muchísimo!", img: stockImages[1] },
@@ -22,7 +21,7 @@ window.initTestimonios = function () {
     const form = document.getElementById('testimonialForm');
     const discardAlert = document.getElementById('discardAlert');
 
-    // --- 1. Sistema de Estrellas Interactivo ---
+    // --- 1. Sistema de Estrellas  ---
     const starsContainer = document.getElementById('interactiveStars');
     const ratingInput = document.getElementById('ratingValue');
     const ratingDisplay = document.getElementById('ratingDisplay');
@@ -126,12 +125,12 @@ window.initTestimonios = function () {
         });
     };
 
-    // ✨ Cierre haciendo clic fuera del modal (Restaurado) ✨
+    // Cierre  de modal
     modal.addEventListener('click', (e) => {
         if (e.target === modal) handleCloseModal();
     });
 
-    // ✨ Apertura del modal con Anime.js ✨
+    //  Apertura del modal con Anime.js 
     document.getElementById('btnOpenModal').onclick = () => {
         modal.classList.remove('hidden');
         anime({
@@ -236,7 +235,6 @@ window.initTestimonios = function () {
 
     function render() {
         if (!track) return;
-        // Duplicamos el arreglo para que el bucle @keyframes de CSS funcione a la perfección (-50%)
         const displaySet = [...testimonialsData, ...testimonialsData];
 
         track.innerHTML = displaySet.map((item, index) => `
@@ -267,7 +265,7 @@ window.initTestimonios = function () {
         void track.offsetWidth;
         track.classList.add('scrolling-active');
 
-        // ✨ Animación de entrada de las tarjetas con Anime.js ✨
+        //  Animación de entrada de las tarjetas con Anime.js
         anime({
             targets: '.testimonial-card',
             translateY: [30, 0],
